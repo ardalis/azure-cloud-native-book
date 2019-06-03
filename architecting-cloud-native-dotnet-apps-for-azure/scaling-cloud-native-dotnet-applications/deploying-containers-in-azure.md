@@ -10,5 +10,5 @@ ms.date: 06/30/2019
 
 
 >[!div class="step-by-step"]
->[Previous](leveraging-serverless-functions.md)
+>[Previous](combining-containers-and-serverless-approaches.md)
 >[Next](other-deployment-options.md)

@@ -11,4 +11,4 @@ ms.date: 06/30/2019
 
 >[!div class="step-by-step"]
 >[Previous](leveraging-containers-and-orchestrators.md)
->[Next](deploying-containers-in-azure.md)
+>[Next](combining-containers-and-serverless-approaches.md)
