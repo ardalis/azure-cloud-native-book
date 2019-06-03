@@ -3,7 +3,7 @@ title: Introduction to Cloud Native .NET Applications
 description: Architecting Cloud Native .NET Apps for Azure | Introduction to Cloud Native .NET Applications
 ms.date: 06/30/2019
 ---
-# Introduction to Containers and Docker
+# Introduction to Cloud Native .NET Applications
 
 Welcome to the world of Cloud Native computing!
 

@@ -66,4 +66,4 @@ The Azure cloud platform provides a highly elastic infrastructure with a rich se
 
 >[!div class="step-by-step"]
 >[Previous](index.md)
->[Next](docker-terminology.md)
+>[Next](candidate-apps-for-cloud-native.md)
