@@ -1,7 +1,7 @@
 ---
 title: Defining Cloud Native
 description: Architecting Cloud Native .NET Apps for Azure | Defining Cloud Native
-ms.date: 08/31/2018
+ms.date: 06/30/2019
 ---
 # Defining Cloud Native
 
