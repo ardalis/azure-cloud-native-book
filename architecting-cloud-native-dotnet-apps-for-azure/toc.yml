@@ -1,0 +1,14 @@
+- name: "Architecting Cloud Native .NET Apps for Azure"
+  href: index.md
+  items:
+  - name: Introduction to Cloud Native Applications
+    href: introduction-to-cloud-native-applications/index.md
+    items:
+    - name: Defining Cloud Native
+      href: introduction-to-cloud-native-applications/defining-cloud-native.md
+    - name: Candidate Apps for Cloud Native
+      href: introduction-to-cloud-native-applications/candidate-apps-for-cloud-native.md
+    - name: The Azure Cloud Native Development Stack
+      href: introduction-to-cloud-native-applications/azure-cloud-native-development-stack.md
+  - name: Key takeaways
+    href: key-takeaways.md
