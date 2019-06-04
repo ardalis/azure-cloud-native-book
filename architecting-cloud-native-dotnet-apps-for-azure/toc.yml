@@ -23,5 +23,16 @@
       href: scaling-cloud-native-dotnet-applications/deploying-containers-in-azure.md
     - name: Other Deployment Options
       href: scaling-cloud-native-dotnet-applications/other-deployment-options.md
+  - name: Implementing a Cloud Native App
+    href: implementing-a-cloud-native-app/index.md
+    items:
+    - name: Introducing the eShopOnContainers Reference App
+      href: implementing-a-cloud-native-app/introducing-eshoponcontainers-reference-app.md
+    - name: Mapping eShopOnContainers to Azure Services
+      href: implementing-a-cloud-native-app/mapping-eshoponcontainers-to-azure-services.md
+    - name: Hosting the eShopOnContainers Application
+      href: implementing-a-cloud-native-app/hosting-the-eshoponcontainers-application.md
+    - name: Centralized Configuration
+      href: implementing-a-cloud-native-app/centralized-configuration.md
   - name: Key takeaways
     href: key-takeaways.md
