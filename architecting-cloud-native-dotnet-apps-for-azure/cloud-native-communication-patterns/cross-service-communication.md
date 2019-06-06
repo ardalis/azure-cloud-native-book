@@ -14,11 +14,11 @@ There are several widely-accepted approaches to implementing cross-service commu
 
 Consider the following interaction types:
 
--   *Query* – when a calling service requires a response from a called service, such as, “Hey, give me the number of customer orders for a given date range.”
+- *Query* – when a calling service requires a response from a called service, such as, “Hey, give me the number of customer orders for a given date range.”
 
--   *Command* – whereas the calling service needs another service to execute an action but does not require a response, such as, “Hey, just ship this order.”
+- *Command* – whereas the calling service needs another service to execute an action but does not require a response, such as, “Hey, just ship this order.”
 
--   *Event* – whereas one service, the publisher, raises an event of a state change or notification that an action has occurred. Other services, called subscribers, who are interested, can react to the event accordingly. Neither the publisher or subscribers are aware of each other.
+- *Event* – whereas one service, the publisher, raises an event of a state change or notification that an action has occurred. Other services, called subscribers, who are interested, can react to the event accordingly. Neither the publisher or subscribers are aware of each other.
 
 Microservice systems typically use a combination of these interaction types when executing operations that require cross-service interaction. Let’s take a close look at each and how you might implement them.
 
@@ -95,11 +95,11 @@ Messages can be accessed from anywhere in the world via authenticated calls usin
 
 That said, there are limitations with the service:
 
--   Message order is not guaranteed
+- Message order is not guaranteed
 
--   A message can only persist for 7 days before it is automatically removed
+- A message can only persist for 7 days before it is automatically removed
 
--   Support for state management, duplicate detection, or transactions is not available
+- Support for state management, duplicate detection, or transactions is not available
 
 Figure 4-14 below shows the hierarchy of an Azure Storage Queue.
 

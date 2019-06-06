@@ -69,5 +69,10 @@
     items:
     - name: Authentication and Authorization in Cloud Native Apps
       href: identity/auth-in-cloud-native.md
+  - name: Security
+    href: security/index.md
+    items:
+    - name: Azure Security for Cloud Native Apps
+      href: security/azure-security-for-cloud-native.md
   - name: Key takeaways
     href: key-takeaways.md
