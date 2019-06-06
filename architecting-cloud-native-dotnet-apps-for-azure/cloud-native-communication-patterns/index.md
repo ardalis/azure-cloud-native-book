@@ -1,6 +1,6 @@
 ---
-title: Microservice Communication Patterns
-description: Architecting Cloud Native .NET Apps for Azure | Microservice Communication Patterns
+title: Cloud Native Communication Patterns
+description: Architecting Cloud Native .NET Apps for Azure | Cloud Native Communication Patterns
 ms.date: 06/30/2019
 ---
 # Cloud Native Communication Patterns

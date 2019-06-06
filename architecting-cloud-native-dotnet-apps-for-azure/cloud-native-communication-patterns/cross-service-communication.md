@@ -1,6 +1,6 @@
 ---
 title: Cross-Service Communication
-description: Architecting Cloud Native .NET Apps for Azure | Candidate Apps for Cloud Native
+description: Architecting Cloud Native .NET Apps for Azure | Cross-Service Communication
 ms.date: 06/30/2019
 ---
 
@@ -215,7 +215,7 @@ Instead from reading from the same resource, each consumer group reads across a 
 
 For applications that must stream numbers of events, Azure Event Hub can be arobust and affordable solution.
 
-# Summary
+## Summary
 
 Blah, blah, blah
 
@@ -223,10 +223,6 @@ Blah, blah, blah
 
 -   **Blah**  
     https://aka.ms/liftandshiftwithcontainersebook
-
-
-
-
 
 >[!div class="step-by-step"]
 >[Previous](front-end-communication.md)

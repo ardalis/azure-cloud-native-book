@@ -1,6 +1,6 @@
 ---
 title: Front-End Client Communication
-description: Architecting Cloud Native .NET Apps for Azure | Candidate Apps for Cloud Native
+description: Architecting Cloud Native .NET Apps for Azure | Front-End Client Communication
 ms.date: 06/30/2019
 ---
 

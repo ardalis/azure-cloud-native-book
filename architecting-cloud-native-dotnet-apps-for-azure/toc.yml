@@ -34,5 +34,16 @@
       href: implementing-a-cloud-native-app/hosting-the-eshoponcontainers-application.md
     - name: Centralized Configuration
       href: implementing-a-cloud-native-app/centralized-configuration.md
+  - name: Cloud Native Communication Patterns
+    href: cloud-native-communication-patterns/index.md
+    items:
+    - name: Communication Considerations
+      href: cloud-native-communication-patterns/cross-service-communication.md.md
+    - name: Front-End Client Communication
+      href: cloud-native-communication-patterns/front-end-communication.md
+    - name: Cross-Service Communication
+      href: cloud-native-communication-patterns/cross-service-communication.md
+    - name: Centralized Configuration
+      href: cloud-native-communication-patterns/centralized-configuration.md
   - name: Key takeaways
     href: key-takeaways.md

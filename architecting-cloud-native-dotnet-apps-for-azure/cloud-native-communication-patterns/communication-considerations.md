@@ -1,6 +1,6 @@
 ---
 title: Communication Considerations
-description: Architecting Cloud Native .NET Apps for Azure | Candidate Apps for Cloud Native
+description: Architecting Cloud Native .NET Apps for Azure | Communication Considerations
 ms.date: 06/30/2019
 ---
 # Communication Considerations
