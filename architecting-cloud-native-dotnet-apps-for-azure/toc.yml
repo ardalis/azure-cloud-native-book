@@ -64,5 +64,10 @@
       href: monitoring-and-health/logging.md
     - name: Monitoring in Azure Kubernetes Services
       href: monitoring-and-health/monitoring-azure-kubernetes.md
+  - name: Identity
+    href: identity/index.md
+    items:
+    - name: Authentication and Authorization in Cloud Native Apps
+      href: identity/auth-in-cloud-native.md
   - name: Key takeaways
     href: key-takeaways.md
