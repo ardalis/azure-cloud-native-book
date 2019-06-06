@@ -50,5 +50,19 @@
     items:
     - name: Communication Considerations
       href: distributed-data/cloud-native-data-patterns.md
+  - name: Resiliency
+    href: resiliency/index.md
+    items:
+    - name: Application Resiliency Patterns
+      href: resiliency/application-resiliency-patterns.md
+  - name: Monitoring and Health
+    href: monitoring-and-health/index.md
+    items:
+    - name: Observability Patterns
+      href: monitoring-and-health/observability-patterns.md
+    - name: Logging
+      href: monitoring-and-health/logging.md
+    - name: Monitoring in Azure Kubernetes Services
+      href: monitoring-and-health/monitoring-azure-kubernetes.md
   - name: Key takeaways
     href: key-takeaways.md
