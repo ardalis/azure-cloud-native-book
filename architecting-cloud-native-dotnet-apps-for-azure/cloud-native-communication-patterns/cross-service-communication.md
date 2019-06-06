@@ -213,7 +213,7 @@ Instead from reading from the same resource, each consumer group reads across a 
 
 **Figure 4-20**. Event Hub partitioning
 
-For applications that must stream numbers of events, Azure Event Hub can be arobust and affordable solution.
+For applications that must stream numbers of events, Azure Event Hub can be a robust and affordable solution.
 
 ## Summary
 
