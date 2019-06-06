@@ -38,12 +38,17 @@
     href: cloud-native-communication-patterns/index.md
     items:
     - name: Communication Considerations
-      href: cloud-native-communication-patterns/cross-service-communication.md.md
+      href: cloud-native-communication-patterns/cross-service-communication.md
     - name: Front-End Client Communication
       href: cloud-native-communication-patterns/front-end-communication.md
     - name: Cross-Service Communication
       href: cloud-native-communication-patterns/cross-service-communication.md
     - name: Centralized Configuration
       href: cloud-native-communication-patterns/centralized-configuration.md
+  - name: Distributed Data
+    href: distributed-data/index.md
+    items:
+    - name: Communication Considerations
+      href: distributed-data/cloud-native-data-patterns.md
   - name: Key takeaways
     href: key-takeaways.md
