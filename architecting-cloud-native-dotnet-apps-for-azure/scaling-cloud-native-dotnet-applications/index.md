@@ -23,14 +23,14 @@ Azure App Service plans can be configured to *scale out*, either manually when s
 ![Scaling out an App Service plan.](./media/image02.png)
 **Figure 2-2**. Scaling out an App Service plan.
 
-Autoscale is an Azure feature that can be enabled for App Services and other plans. It allows plan administrators to configure rules that will dictate when additional instances should be added to or removed from the plan. Figure 2-3 shows an example set of rules which will add an additional instance whenever the average CPU of all current instances exceeds 70%. A separate rule will remove an instance whenever the average CPU of all current instances drops below 40%. The plan also supports upper and lower limits to prevent the pool from climbing out of control or dropping to zero, and by default there is a 5-minute delay between alterations so the plan isn’t constantly adding and then immediately removing instances. Essentially, you can use these rules to act as a kind of thermostat for your application, where instead of regulating temperature with heat or cooling, you try to maintain a constant level of load across your app nodes. Autoscale adds and removes nodes as necessary to maintain this level.
+Autoscale is an Azure feature that can be enabled for App Services and other plans. It allows plan administrators to configure rules that will dictate when additional instances should be added to or removed from the plan. Figure 2-3 shows an example set of rules which will add an additional instance whenever the average CPU of all current instances exceeds 70%. A separate rule will remove an instance whenever the average CPU of all current instances drops below 40%. The plan also supports upper and lower limits to prevent the pool from climbing out of control or dropping to zero, and by default there is a 5-minute delay between alterations so the plan isn’t constantly adding and then immediately removing instances. Essentially, you can use these rules to act as a kind of thermostat for your application, where instead of regulating temperature with heating or cooling, you try to maintain a constant level of load across your app nodes. Autoscale adds and removes nodes as necessary to maintain this level.
 
-![Configuring autoscale for an App Service plan.](./media/image02.png)
+![Configuring autoscale for an App Service plan.](./media/image03.png)
 **Figure 2-3**. Configuring autoscale for an App Service plan.
 
 Although Azure App Service plans work for a wide variety of apps, many complex business apps benefit from leveraging containers that can be built and tested locally and then deployed to the cloud. Simple container-based apps can still leverage App Service plans using Web App for Containers, but once multiple containers are needed to work in concert with one another, it’s likely time to look to more powerful deployment options.
 
-**Reference**
+## References
 
 - [web App for Containers](https://azure.microsoft.com/en-us/services/app-service/containers/)
 
