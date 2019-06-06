@@ -24,7 +24,6 @@ Microservice systems typically use a combination of these interaction types when
 
 ## Queries
 
-
 Often, one microservice may have the need to *query* another, requiring an immediate response in order to complete an operation. For example, a shopping basket microservice may need product information and a price in order to add an item to its basket. There are a number of approaches for implementing query operations.
 
 ### Request/Response Messaging
