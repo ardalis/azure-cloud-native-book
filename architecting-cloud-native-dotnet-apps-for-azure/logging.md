@@ -3,7 +3,7 @@ title: Logging
 description: Architecting Cloud Native .NET Apps for Azure | Logging
 ms.date: 06/30/2019
 ---
-# Elastic Stack
+# Elastic Stack 
 
 There are many good centralized logging tools and they vary in cost from being free, open source tools to some quite expensive options. In many cases the free tools are on par or better than the paid offerings. One such tool is a combination of three open source components: Elastic search, Logstash and Kibana. 
 Collectively these are known as the Elastic Stack. 

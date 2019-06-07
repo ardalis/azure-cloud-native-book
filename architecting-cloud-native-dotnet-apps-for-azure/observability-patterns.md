@@ -3,7 +3,7 @@ title: Observability patterns
 description: Architecting Cloud Native .NET Apps for Azure | Observability patterns
 ms.date: 06/30/2019
 ---
-# Observability Patterns
+# Observability Patterns 
 Just as patterns have been developed which aide in the layout of code in applications there are patterns for operating applications in a reliable way. Three very useful patterns in maintaining applications have emerged: logging, monitoring and alerts. 
 
 ## Logging
@@ -50,6 +50,8 @@ Typically, though, a single 500 error is not sufficient to determine that a prob
 
 One of the most damaging patterns in alerting is to fire too many alerts for humans to investigate. Service owners will rapidly become desensitized to errors which they’re previously investigated and found to be benign. When true errors occur then they will be lost in the noise of hundreds of false positives. This makes it important to ensure that the alerts which do fire are indicative of a real problem.
 
+
+
 >[!div class="step-by-step"]
->[Previous](monitoring-and-health.md)
+>[Previous](index.md)
 >[Next](logging.md)
