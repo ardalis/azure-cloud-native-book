@@ -14,8 +14,6 @@ Transactional support
 Eventual vs. Immediate consistency
 CQRS Pattern
 
-
-
 >[!div class="step-by-step"]
->[Previous](index.md)
->[Next](../index.md)
+>[Previous](distributed-data.md)
+>[Next](azure-data-storage.md)

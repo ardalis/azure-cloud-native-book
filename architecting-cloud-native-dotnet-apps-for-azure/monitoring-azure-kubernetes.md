@@ -5,7 +5,6 @@ ms.date: 06/30/2019
 ---
 # Monitoring in Azure Kubernetes Services
 
-
 >[!div class="step-by-step"]
 >[Previous](logging.md)
->[Next](../index.md)
+>[Next](identity.md)

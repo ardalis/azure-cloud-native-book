@@ -10,5 +10,5 @@ Intro paragraph
 
 
 >[!div class="step-by-step"]
->[Previous](../index.md)
+>[Previous](identity.md)
 >[Next](auth-in-cloud-native.md)

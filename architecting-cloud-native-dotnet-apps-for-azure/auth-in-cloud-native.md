@@ -10,5 +10,5 @@ ms.date: 06/30/2019
 
 
 >[!div class="step-by-step"]
->[Previous](index.md)
->[Next](../index.md)
+>[Previous](identity.md)
+>[Next](azure-active-directory.md)

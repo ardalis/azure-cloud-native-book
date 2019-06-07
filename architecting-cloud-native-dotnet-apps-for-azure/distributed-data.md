@@ -11,4 +11,4 @@ Intro paragraph
 
 >[!div class="step-by-step"]
 >[Previous](cloud-native-data-patterns.md)
->[Next](../index.md)
+>[Next](cloud-native-data-patterns.md)

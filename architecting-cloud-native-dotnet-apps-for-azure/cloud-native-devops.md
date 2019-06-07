@@ -7,8 +7,6 @@ ms.date: 06/30/2019
 
 Intro paragraph
 
-
-
 >[!div class="step-by-step"]
->[Previous](../index.md)
->[Next](../index.md)
+>[Previous](azure-security-for-cloud-native.md)
+

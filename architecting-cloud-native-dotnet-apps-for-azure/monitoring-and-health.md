@@ -10,5 +10,5 @@ Intro paragraph
 
 
 >[!div class="step-by-step"]
->[Previous](../index.md)
+>[Previous](observability-patterns.md)
 >[Next](observability-patterns.md)

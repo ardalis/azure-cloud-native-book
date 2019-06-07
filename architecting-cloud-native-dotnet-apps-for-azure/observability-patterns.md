@@ -9,8 +9,6 @@ Logging
 Monitoring
 Alerts
 
-
-
 >[!div class="step-by-step"]
->[Previous](index.md)
+>[Previous](monitoring-and-health.md)
 >[Next](logging.md)

@@ -11,8 +11,6 @@ Retry logic in Ocelet (Circuit Breaker and Retry(??))
 Retry logic in EF Core
 Automated Healing
 
-
-
 >[!div class="step-by-step"]
->[Previous](index.md)
->[Next](../index.md)
+>[Previous](resiliency.md)
+>[Next](monitoring-and-health.md)

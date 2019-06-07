@@ -8,5 +8,5 @@ ms.date: 06/30/2019
 (5 pages)
 
 >[!div class="step-by-step"]
->[Previous](index.md)
->[Next](../index.md)
+>[Previous](security.md)
+>[Next](cloud-native-devops.md)

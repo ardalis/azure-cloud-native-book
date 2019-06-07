@@ -10,5 +10,5 @@ Intro paragraph
 
 
 >[!div class="step-by-step"]
->[Previous](../index.md)
+>[Previous](identity-server.md)
 >[Next](azure-security-for-cloud-native.md)

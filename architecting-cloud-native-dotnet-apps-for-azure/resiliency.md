@@ -7,8 +7,6 @@ ms.date: 06/30/2019
 
 Intro paragraph
 
-
-
 >[!div class="step-by-step"]
->[Previous](../index.md)
+>[Previous](distributed-data.md)
 >[Next](application-resiliency-patterns.md)
