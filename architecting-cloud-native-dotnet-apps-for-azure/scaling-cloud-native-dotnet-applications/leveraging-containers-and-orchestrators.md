@@ -36,5 +36,5 @@ Kubernetes Minikube and Kubernetes Server from Docker Desktop
 
 
 >[!div class="step-by-step"]
->[Previous](index.md)
+>[Previous](scaling-cloud-native-dotnet-applications.md)
 >[Next](leveraging-serverless-functions.md)

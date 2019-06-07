@@ -11,25 +11,23 @@ Cloud native is about thinking differently on how we construct and evolve critic
 
 Consider the [definition](https://github.com/cncf/foundation/blob/master/charter.md) from the Cloud Native Computing Foundation:
 
--   Cloud native technologies empower organizations to build and run scalable applications in modern, dynamic environments such as public, private, and hybrid clouds. Containers, service meshes, microservices, immutable infrastructure, and declarative APIs exemplify this approach.
+- Cloud native technologies empower organizations to build and run scalable applications in modern, dynamic environments such as public, private, and hybrid clouds. Containers, service meshes, microservices, immutable infrastructure, and declarative APIs exemplify this approach.
 
--   These techniques enable loosely coupled systems that are resilient, manageable, and observable. Combined with robust automation, they allow engineers to make high-impact changes frequently and predictably with minimal toil.
+- These techniques enable loosely coupled systems that are resilient, manageable, and observable. Combined with robust automation, they allow engineers to make high-impact changes frequently and predictably with minimal toil.
 
 Applications and their underlying systems have become increasingly complex with users demanding more and more. The new expectation is up-to-the-minute functionality, instant scalability and absolutely no downtime. Performance problems, long-standing errors and the inability to move fast are no longer acceptable to your business and customers.
 
 Among many things, cloud native is about *speed* and *agility*. Business critical systems are evolving from an enabler of business capability to a weapon of strategic transformation, accelerating business velocity and growth. Now, it’s imperative to get ideas to market immediately. In Figure 1-1, shown below, consider three pioneers who have implemented these techniques and ponder the speed, agility and scalability they have achieved.
 
-![Companies embracing cloud native agility](media/image01.png)
-
+![Companies embracing cloud native agility](media/companies-embracing-cloud-native.png)
 **Figure 1-1**. Companies embracing cloud native agility
 
 As you can see, eBay, Netflix and Uber expose systems that consist of hundreds of self-contained isolated microservices. Impressively, they can rapidly respond to market conditions by instantaneously updating specific functionality without having to fully deploy the entire system.
 
 At its core, this agility derives from the architecture and infrastructure upon which the system is constructed, which include the following six capabilities, as shown below in Figure 1-2.
 
-![Capabilities of cloud cative apps](media/image02.png)
-
-**Figure 1-2**. Capabilities of cloud cative apps
+![Capabilities of cloud native apps](media/capabilities-of-cloud-native-apps.png)
+**Figure 1-2**. Capabilities of cloud native apps
 
 As each of these capabilities are key to a cloud native system, let’s take some time to visit each.
 
@@ -41,8 +39,7 @@ The focus moves to “*how”* the application is created and deployed, not so m
 
 Figure 1-3, shown below depicts the range of the full-featured compute services available in Azure. As you move from the top of the hierarchy to the bottom, your focus shifts away infrastructure plumbing to business functionality. Cloud native systems typically reside at the lower levels of the stack leveraging containers, PaaS and Serverless environments.
 
-![Azure compute stack](media/image03.png)
-
+![Azure compute stack](media/azure-compute-stack.png)
 **Figure 1-3**. Azure compute stack
 
 Cloud native systems typically view the underlying infrastructure as “*disposable*” - provisioned in minutes and resized, scaled, moved or destroyed whenever necessary – all done through automation.
@@ -65,13 +62,13 @@ Much has been written about microservices, an increasingly popular architectural
 
 Cloud native systems embrace microservices. Moving beyond the popular monolithic design, in which an entire application executes in a single-tiered environment, a microservices architecture is an approach to building a system as a distributed set of small, independent services – that interact through a shared fabric.
 
--   Each microservice runs in its own process and communicates with others using standard communication protocols such as HTTP/HTTPS, WebSockets, or [AMQP](https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol)
+- Each microservice runs in its own process and communicates with others using standard communication protocols such as HTTP/HTTPS, WebSockets, or [AMQP](https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol)
 
--   Each microservice implements a specific business capability within a larger domain context boundary
+- Each microservice implements a specific business capability within a larger domain context boundary
 
--   Each service is developed autonomously and can be deployed independently
+- Each service is developed autonomously and can be deployed independently
 
--   Each service is self-contained: Owns its related domain data model and logic, enabling it to embrace the data storage technology (SQL, NoSQL) and programming platform of choice
+- Each service is self-contained: Owns its related domain data model and logic, enabling it to embrace the data storage technology (SQL, NoSQL) and programming platform of choice
 
 ### Why microservices?
 
@@ -81,8 +78,7 @@ An additional benefit is that a microservice can scale in and out independently.
 
 Figure 1-4, shown below, contrasts a monolithic and microservices approach.
 
-![Monolithic deployment versus microservices](media/image04.jpg)
-
+![Monolithic deployment versus microservices](media/monolithic-deployment-vs-microservices.jpg)
 **Figure 1-4.** Monolithic deployment versus microservices
 
 Cloud native systems are built as a set of independent microservices and microservices significantly increase agility and the overall maintainability of applications.
@@ -99,11 +95,8 @@ Each [container](https://docs.docker.com/glossary/?term=container) runs on top o
 
 Each microservice typically runs in its own container, as shown below in Figure 1-5. In this example, we are running a Docker host on a single virtual machine, with four microservices running upon it.
 
-![](media/image05.png)
-
->   Multiple containers running on a container host
-
->   **Figure 1-5**. Multiple containers running on a container host
+![Multiple containers running on a container host](media/multiple-containers-running-on-a-host.png)
+**Figure 1-5**. Multiple containers running on a container host
 
 Even though each container shares the OS on the underlying VM, each is isolated from one another. Both Linux and Windows container provide a high-degree of process isolation across running containers. However, Windows containers offer an even higher degree of isolation using its [Hype-V Container](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/hyperv-container) offering.
 
@@ -117,8 +110,7 @@ Some development teams are exploring writing and running code locally (on their 
 
 Looking forward, the Azure cloud platform is previewing a service entitled [Azure Dev Spaces](https://docs.microsoft.com/en-us/azure/dev-spaces/), shown below, in Figure 1-6.
 
-![Azure Dev Spaces](media/image06.png)
-
+![Azure Dev Spaces](media/azure-dev-spaces-site-example.png)
 **Figure 1-6**. Azure Dev Spaces
 
 Here Developer Susie Walker and her team share a development instance of their entire system in an [Azure Kubernetes Service](https://azure.microsoft.com/en-us/services/kubernetes-service/) cluster (shown above in blue). Leveraging Azure Dev Spaces, Susie creates a personal space on her development machine with a local copy of her Hotel Service. With that, she can work locally with the hotel service and seamlessly run against the entire system residing on the cluster without having to mock or replicate dependencies. Until Susie deploys the Hotel Service to the cluster, other team members will run against the older version in the cluster. We discuss this upcoming product, Azure Dev Spaces, in the container chapter.
@@ -128,18 +120,17 @@ Containers offer immense benefits in terms of packaging, deploying and managing 
 ## Thinking in terms of cloud-hosted backing services…
 
 Beyond cloud compute infrastructure, cloud native systems depend upon many different ancillary resources to operate: Data stores, message brokers, monitoring and identity services - to name just a few.
- 
+
 A backing service is any external resource on which an application relies for functionality. While they can be local or cloud-based, cloud native apps by definition always favor cloud-based services.
 
 Figure 1-7, shown below, depicts common backing services found in cloud native systems.
 
-![Cloud native backing services](media/image07.png)
-
+![Cloud native backing services](media/cloud-native-backing-services.png)
 **Figure 1-7**. Cloud native backing services
 
 Your operations team could accept the responsibility for owning these ancillary services. It wouldn’t be hard to provision a VM and install, say, an instance of the open source RabbitMQ message broker. While certainly feasible, does that make sense - especially from a business perspective?
 
-Chances are you’re not in the message broker, database or identity server business. So, then, why incur the cost and complexity of owning these items when someone else can do it better and for less? No matter how skilled you may be, it is unlikely that you will be able to match the reliability and performance, say,of the fully-managed [Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) service is Azure. That Microsoft team that owns it lives and breathes databases, 24/7 - that’s their business. While you, on the other hand, sell consumer items, medical devices, etc. Do what you good at and let others help you with the rest. Focus on your effort on building outstanding customer functionality, not becoming experts in 3rd party/open-source backing services.
+Chances are you’re not in the message broker, database or identity server business. So, then, why incur the cost and complexity of owning these items when someone else can do it better and for less? No matter how skilled you may be, it is unlikely that you will be able to match the reliability and performance, say, of the fully-managed [Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) service in Azure. That Microsoft team that owns it lives and breathes databases, 24/7 - that’s their business. While you, on the other hand, sell consumer items, medical devices, etc. Do what you're good at and let others help you with the rest. Focus your effort on building outstanding customer functionality, not becoming experts in 3rd party/open-source backing services.
 
 All that said, cloud native systems are best built leveraging managed backing services from a cloud provider. Cloud providers manage these resources at scale and bear the responsibility for security, scalability and maintenance. You can also count on comprehensive monitoring, configurable redundancy and availability – built into the service. They are battle-tested, performant and ready to go!
 
@@ -149,16 +140,15 @@ Not only do cloud-hosted backing services reduce cost, complexity and risk, but 
 
 Figure 1-8, show below, depicts many of the managed services available on the Azure platform.
 
-![Managed services in Azure](media/image08.png)
-
+![Managed services in Azure](media/managed-services-in-azure.png)
 **Figure 1-8**. Managed services in Azure
 
-You may understandably have a concern with vendor lock-in. However, you must weight this concern against that of bearing the full responsibility for hosting your own backing services. A smart approach might be to wrap proven cloud-managed services inside of an abstraction shim, using a strategy pattern and externalized configuration, giving you the ability to register and unregister the backing service dynamically without a full redeployment of the system.
+You may understandably have a concern with vendor lock-in. However, you must weigh this concern against that of bearing the full responsibility for hosting your own backing services. A smart approach might be to wrap proven cloud-managed services inside of an abstraction shim, using a strategy pattern and externalized configuration, giving you the ability to register and unregister the backing service dynamically without a full redeployment of the system.
 
 Throughout this book, we will explore many of cloud-managed backing services by mapping the eShop for Containers reference architecture application.
 
 ## Thinking in terms of modern system design…
- 
+
 How would you design a cloud native app? What would your architecture look like? To what principles, patterns and (so-called) best practices would you adhere? We’ve talked about several key design patterns prevalent in cloud native systems, including cloud infrastructure, microservices, containers and cloud-managed backing services. But, what about the application design process itself?
 
 We’ll start with a widely accepted foundation for service design and then highlight some topics of critical importance.
@@ -169,8 +159,7 @@ A widely-accepted methodology often cited for constructing cloud native systems 
 
 In Figure 1-9, shown below, we fly you over the 12-Factor methodology at 5,000 feet – low enough to appreciate the principles, but high enough as to not get caught in the weeds.
 
-![The 12-Factor app](media/image09.png)
-
+![The 12-Factor app](media/the-twelve-factor-app.png)
 **Figure 1-9.** The 12-Factor app
 
 ### Critical Design Considerations
@@ -180,7 +169,7 @@ Beyond the guidance provided in the 12-factor manifesto, there are several criti
 *Communication*
 
 How will front-end client applications communicate with your backed-end core services? Will you allow direct communication? Or, might you abstract the backend services with a façade which provides more flexibility, control and security?
- 
+
 Moreover, how will backend core services communicate with each other? Will you allow direct HTTP calls which lead to coupling and can decrease performance and agility? Or, might you consider decoupled message using message brokers with queues and topics?
 
 *Resiliency*
@@ -193,7 +182,7 @@ By design, each microservice owns and encapsulates its own data, exposing operat
 
 *Identity*
 
-Blah, blah, blah
+How will your service identify who is accessing it and what permissions they should have?
 
 We introduce these critical considerations topics here in detail throughout the chapters in this book.
 
@@ -213,12 +202,11 @@ We cover infrastructure automation in detail in the Automation chapter of this b
 
 ### Automating Code
 
-Cloud native systems typically consist of numerous stand-alone, independent microservices, that can interact with each other when needed. Being self-contained, each of these services has its own independent life cycle. It would certainly be an antipattern to attempt to *manually manage* each of these
-services - expensive, inefficient and error prone.
+Cloud native systems typically consist of numerous stand-alone, independent microservices, that can interact with each other when needed. Being self-contained, each of these services has its own independent life cycle. It would certainly be an antipattern to attempt to *manually manage* each of these services - expensive, inefficient, and error prone.
 
 Instead, each service is best managed with its own continuous integration/continuous delivery (CI/CD) pipeline, which together can work in tandem to deploy and manage a cloud-native application.
 
-Please hold on to your thoughts here as we cover DevOps and CI/CD in later in this chapter and in a dedicated chapter of this book.
+Please hold on to your thoughts here as we cover DevOps and CI/CD later in this chapter and in a dedicated chapter of this book.
 
 ### Automating the Environment
 
@@ -248,12 +236,11 @@ If you have a handful of microservices, your DevOps might be able to manually ma
 
 When you’re operating at scale, [container orchestration](https://blog.newrelic.com/engineering/container-orchestration-explained/), i.e., automating the deployment, management, scaling, networking, and availability of your containers – is mandatory.
 
-Container orchestration is done with a special software program called (you guessed it) a container orchestrator. While many are available, [Kubernetes](https://kubernetes.io/) has become the defacto standard in the cloud native world. The Azure cloud features Kubernetes as a managed service, [Azure Kubernetes Service](https://azure.microsoft.com/en-us/services/kubernetes-service/), which means that you are not responsible for provisioning or maintaining the Kubernetes infrastructure – a career path in and of itself.
+Container orchestration is done with a special software program called (you guessed it) a container orchestrator. While many are available, [Kubernetes](https://kubernetes.io/) has become the de facto standard in the cloud native world. The Azure cloud features Kubernetes as a managed service, [Azure Kubernetes Service](https://azure.microsoft.com/services/kubernetes-service/), which means that you are not responsible for provisioning or maintaining the Kubernetes infrastructure – a career path in and of itself.
 
 What exactly do containers orchestrators do? Figure 1-10, shown below, provides some insight.
 
-![What container orchestrators do](media/image10.png)
-
+![What container orchestrators do](media/what-container-orchestrators-do.png)
 **Figure 1-10**. What container orchestrators do
 
 We will dig deep into containers orchestrators and Azure Kubernetes Services throughout this book.

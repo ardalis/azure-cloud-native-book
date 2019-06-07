@@ -2,16 +2,16 @@
   href: index.md
   items:
   - name: Introduction to Cloud Native Applications
-    href: introduction-to-cloud-native-applications/index.md
+    href: introduction-to-cloud-native-applications.md
     items:
     - name: Defining Cloud Native
-      href: introduction-to-cloud-native-applications/defining-cloud-native.md
+      href: defining-cloud-native.md
     - name: Candidate Apps for Cloud Native
-      href: introduction-to-cloud-native-applications/candidate-apps-for-cloud-native.md
+      href: candidate-apps-for-cloud-native.md
     - name: The Azure Cloud Native Development Stack
-      href: introduction-to-cloud-native-applications/azure-cloud-native-development-stack.md
+      href: azure-cloud-native-development-stack.md
   - name: Scaling Cloud Native .NET Applications
-    href: scaling-cloud-native-dotnet-applications/index.md
+    href: scaling-cloud-native-dotnet-applications.md
     items:
     - name: Leveraging Containers and Orchestrators
       href: scaling-cloud-native-dotnet-applications/leveraging-containers-and-orchestrators.md

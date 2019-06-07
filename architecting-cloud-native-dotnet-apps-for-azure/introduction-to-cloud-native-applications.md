@@ -24,5 +24,5 @@ So, what exactly *is* Cloud Native? Sit back, relax and let us help you explore 
 
 
 >[!div class="step-by-step"]
->[Previous](../index.md)
+>[Previous](index.md)
 >[Next](defining-cloud-native.md)
