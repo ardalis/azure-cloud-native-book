@@ -2,77 +2,80 @@
   href: index.md
   items:
   - name: Introduction to Cloud Native Applications
-    href: introduction-to-cloud-native-applications/index.md
+    href: introduction-to-cloud-native-applications.md
     items:
     - name: Defining Cloud Native
-      href: introduction-to-cloud-native-applications/defining-cloud-native.md
+      href: defining-cloud-native.md
     - name: Candidate Apps for Cloud Native
-      href: introduction-to-cloud-native-applications/candidate-apps-for-cloud-native.md
+      href: candidate-apps-for-cloud-native.md
     - name: The Azure Cloud Native Development Stack
-      href: introduction-to-cloud-native-applications/azure-cloud-native-development-stack.md
+      href: azure-cloud-native-development-stack.md
   - name: Scaling Cloud Native .NET Applications
-    href: scaling-cloud-native-dotnet-applications/index.md
+    href: scaling-cloud-native-dotnet-applications.md
     items:
     - name: Leveraging Containers and Orchestrators
-      href: scaling-cloud-native-dotnet-applications/leveraging-containers-and-orchestrators.md
+      href: leveraging-containers-and-orchestrators.md
     - name: Leveraging Serverless Functions
-      href: scaling-cloud-native-dotnet-applications/leveraging-serverless-functions.md
+      href: leveraging-serverless-functions.md
     - name: Combining Containers and Serverless Approaches
-      href: scaling-cloud-native-dotnet-applications/combining-containers-and-serverless-approaches.md
+      href: combining-containers-and-serverless-approaches.md
     - name: Deploying Containers in Azure
-      href: scaling-cloud-native-dotnet-applications/deploying-containers-in-azure.md
+      href: deploying-containers-in-azure.md
     - name: Other Deployment Options
-      href: scaling-cloud-native-dotnet-applications/other-deployment-options.md
+      href: other-deployment-options.md
   - name: Implementing a Cloud Native App
-    href: implementing-a-cloud-native-app/index.md
+    href: implementing-a-cloud-native-app.md
     items:
     - name: Introducing the eShopOnContainers Reference App
-      href: implementing-a-cloud-native-app/introducing-eshoponcontainers-reference-app.md
+      href: introducing-eshoponcontainers-reference-app.md
     - name: Mapping eShopOnContainers to Azure Services
-      href: implementing-a-cloud-native-app/mapping-eshoponcontainers-to-azure-services.md
+      href: mapping-eshoponcontainers-to-azure-services.md
     - name: Hosting the eShopOnContainers Application
-      href: implementing-a-cloud-native-app/hosting-the-eshoponcontainers-application.md
+      href: hosting-the-eshoponcontainers-application.md
     - name: Centralized Configuration
-      href: implementing-a-cloud-native-app/centralized-configuration.md
+      href: centralized-configuration.md
   - name: Cloud Native Communication Patterns
-    href: cloud-native-communication-patterns/index.md
+    href: cloud-native-communication-patterns.md
     items:
     - name: Communication Considerations
-      href: cloud-native-communication-patterns/cross-service-communication.md
+      href: cross-service-communication.md
     - name: Front-End Client Communication
-      href: cloud-native-communication-patterns/front-end-communication.md
+      href: front-end-communication.md
     - name: Cross-Service Communication
-      href: cloud-native-communication-patterns/cross-service-communication.md
-    - name: Centralized Configuration
-      href: cloud-native-communication-patterns/centralized-configuration.md
+      href: cross-service-communication.md
   - name: Distributed Data
-    href: distributed-data/index.md
+    href: distributed-data.md
     items:
-    - name: Communication Considerations
-      href: distributed-data/cloud-native-data-patterns.md
+    - name: Cloud Native Data Patterns
+      href: cloud-native-data-patterns.md
   - name: Resiliency
-    href: resiliency/index.md
+    href: resiliency.md
     items:
     - name: Application Resiliency Patterns
-      href: resiliency/application-resiliency-patterns.md
+      href: application-resiliency-patterns.md
   - name: Monitoring and Health
-    href: monitoring-and-health/index.md
+    href: monitoring-and-health.md
     items:
     - name: Observability Patterns
-      href: monitoring-and-health/observability-patterns.md
+      href: observability-patterns.md
     - name: Logging
-      href: monitoring-and-health/logging.md
+      href: logging.md
     - name: Monitoring in Azure Kubernetes Services
-      href: monitoring-and-health/monitoring-azure-kubernetes.md
+      href: monitoring-azure-kubernetes.md
   - name: Identity
-    href: identity/index.md
+    href: identity.md
     items:
     - name: Authentication and Authorization in Cloud Native Apps
-      href: identity/auth-in-cloud-native.md
+      href: auth-in-cloud-native.md
   - name: Security
-    href: security/index.md
+    href: security.md
     items:
     - name: Azure Security for Cloud Native Apps
-      href: security/azure-security-for-cloud-native.md
+      href: azure-security-for-cloud-native.md
+  - name: Cloud Native DevOps
+    href: cloud-native-devops.md
+    items:
+    - name: Azure Security for Cloud Native Apps
+      href: azure-security-for-cloud-native.md
   - name: Key takeaways
     href: key-takeaways.md
