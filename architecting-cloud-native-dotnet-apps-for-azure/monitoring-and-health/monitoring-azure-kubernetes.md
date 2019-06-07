@@ -7,5 +7,5 @@ ms.date: 06/30/2019
 
 
 >[!div class="step-by-step"]
->[Previous](logging.md)
+>[Previous](azure-monitor.md)
 >[Next](../index.md)
