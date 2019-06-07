@@ -14,37 +14,35 @@
     href: scaling-cloud-native-dotnet-applications.md
     items:
     - name: Leveraging Containers and Orchestrators
-      href: scaling-cloud-native-dotnet-applications/leveraging-containers-and-orchestrators.md
+      href: leveraging-containers-and-orchestrators.md
     - name: Leveraging Serverless Functions
-      href: scaling-cloud-native-dotnet-applications/leveraging-serverless-functions.md
+      href: leveraging-serverless-functions.md
     - name: Combining Containers and Serverless Approaches
-      href: scaling-cloud-native-dotnet-applications/combining-containers-and-serverless-approaches.md
+      href: combining-containers-and-serverless-approaches.md
     - name: Deploying Containers in Azure
-      href: scaling-cloud-native-dotnet-applications/deploying-containers-in-azure.md
+      href: deploying-containers-in-azure.md
     - name: Other Deployment Options
-      href: scaling-cloud-native-dotnet-applications/other-deployment-options.md
+      href: other-deployment-options.md
   - name: Implementing a Cloud Native App
-    href: implementing-a-cloud-native-app/index.md
+    href: implementing-a-cloud-native-app.md
     items:
     - name: Introducing the eShopOnContainers Reference App
-      href: implementing-a-cloud-native-app/introducing-eshoponcontainers-reference-app.md
+      href: introducing-eshoponcontainers-reference-app.md
     - name: Mapping eShopOnContainers to Azure Services
-      href: implementing-a-cloud-native-app/mapping-eshoponcontainers-to-azure-services.md
+      href: mapping-eshoponcontainers-to-azure-services.md
     - name: Hosting the eShopOnContainers Application
-      href: implementing-a-cloud-native-app/hosting-the-eshoponcontainers-application.md
+      href: hosting-the-eshoponcontainers-application.md
     - name: Centralized Configuration
-      href: implementing-a-cloud-native-app/centralized-configuration.md
+      href: centralized-configuration.md
   - name: Cloud Native Communication Patterns
-    href: cloud-native-communication-patterns/index.md
+    href: cloud-native-communication-patterns.md
     items:
     - name: Communication Considerations
-      href: cloud-native-communication-patterns/cross-service-communication.md
+      href: cross-service-communication.md
     - name: Front-End Client Communication
-      href: cloud-native-communication-patterns/front-end-communication.md
+      href: front-end-communication.md
     - name: Cross-Service Communication
-      href: cloud-native-communication-patterns/cross-service-communication.md
-    - name: Centralized Configuration
-      href: cloud-native-communication-patterns/centralized-configuration.md
+      href: cross-service-communication.md
   - name: Distributed Data
     href: distributed-data/index.md
     items:

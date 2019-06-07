@@ -10,11 +10,10 @@ Cloud native applications expose channels to enable communication with front-end
 
 To keep things simple, a front-end client could directly communication with backend microservices as shown below in Figure 4-2.
 
-![Direct client to service communication](media/image02.png)
-
+![Direct client to service communication](media/direct-client-to-service-communication.png)
 **Figure 4-2**. Direct client to service communication
 
-While relatively simple to implement, direct front-end communication is seldom an acceptable practice. Doing so tightly couples the front-end to core backend services and opens the door for a number of potential issues, including: 
+While relatively simple to implement, direct front-end communication is seldom an acceptable practice. Doing so tightly couples the front-end to core backend services and opens the door for a number of potential issues, including:
 
 - Client susceptibility to backend core service refactoring
 
@@ -26,8 +25,7 @@ While relatively simple to implement, direct front-end communication is seldom a
 
 Instead, a widely-accepted cloud design pattern is to implement an [API Gateway Service](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/architect-microservice-container-applications/direct-client-to-microservice-communication-versus-the-api-gateway-pattern) between the frontend applications and backend services, as shown below in Figure 4-3.
 
-![API Gateway Pattern](media/image03.png)
-
+![API Gateway Pattern](media/api-gateway-pattern.png)
 **Figure 4-3.** API Gateway Pattern
 
 This pattern exposes a single point of entry (the API gateway) to enable front-end clients to communicate with backend services, insulating the front end from internal service partitioning and refactoring. Not only does the gateway act as a reverse proxy appropriately rerouting inbound traffic but also allows many of the cross-cutting concerns, such as identity, caching, resiliency, metering, throttling, to be offloaded from the backend core services to the gateway.
@@ -40,10 +38,10 @@ Without much effort, you could build your own API Gateway service. In fact, a qu
 
 Azure hosts a cloud-based, fully-managed and full-featured API Gateway solution which would be a great candidate for many medium to large-scale cloud native systems. The service provides built-in gateway management functionality along with a developer and publisher portal, as shown in Figure 4-4.
 
-![Azure API Management](media/image04.png)
+![Azure API Management](media/azure-api-management.png)
 **Figure 4-4**. Azure API Management
 
-[Azure API Management](https://azure.microsoft.com/en-us/services/api-management/) enables you to access backend services hosted anywhere – in the cloud or on-premises in your data center. It supports both REST and SOAP APIs across any development platform (.NET, Java, Golang, etc.). Even other Azure services can be exposed through API Management, letting you put a managed API on top of Azure backing services like [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) or [Azure Logic Apps](https://azure.microsoft.com/en-us/services/logic-apps/).
+[Azure API Management](https://azure.microsoft.com/services/api-management/) enables you to access backend services hosted anywhere – in the cloud or on-premises in your data center. It supports both REST and SOAP APIs across any development platform (.NET, Java, Golang, etc.). Even other Azure services can be exposed through API Management, letting you put a managed API on top of Azure backing services like [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) or [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/).
 
 As shown above in Figure 4-4, the API Gateway feature creates a façade over the backend microservices. Clients (i.e., front-end, other cloud services) invoke the façade with HTTP requests. Each call is eventually routed to a backend service, allowing API Management to add configurable services to the call.
 
@@ -61,17 +59,16 @@ Azure API Management supports many features, including:
 
 - Convert between different data formats, such as from XML to JSON
 
-API Management provides an extension, the Publisher Portal, with which administrators can create APIs and configure how they behave. Here, API Policies can be applied to each call. Policies are a collection of pre-built statements that execute sequentially for the request and response of each call, enabling you to change the behavior of the API through configuration (i.e., not code). The product ships with a large number of prebuilt [policies](https://docs.microsoft.com/en-us/azure/api-management/api-management-policies) that can be executed on the inbound call, backend processing, outbound call and upon an error.
+API Management provides an extension, the Publisher Portal, with which administrators can create APIs and configure how they behave. Here, API Policies can be applied to each call. Policies are a collection of pre-built statements that execute sequentially for the request and response of each call, enabling you to change the behavior of the API through configuration (i.e., not code). The product ships with a large number of prebuilt [policies](https://docs.microsoft.com/azure/api-management/api-management-policies) that can be executed on the inbound call, backend processing, outbound call and upon an error.
 
 Additionally, API Management also provides a Developer Portal, as shown above in Figure x, which enables access to the API, its documentation and sample code to invoke the API across a number of different programming languages.
 
 The Azure API Management service provides a tremendous amount of functionality as shown in Figure 4-5 below.
 
-![Azure API Management Functionality](media/image05.png)
-
+![Azure API Management Functionality](media/azure-api-management-functionality.png)
 **Figure 4-5**. Azure API Management Functionality
 
-Azure API Management is available across [four different pricing tiers](https://azure.microsoft.com/en-us/pricing/details/api-management/):
+Azure API Management is available across [four different pricing tiers](https://azure.microsoft.com/pricing/details/api-management/):
 
 - Developer
 
@@ -83,7 +80,7 @@ Azure API Management is available across [four different pricing tiers](https://
 
 The Developer tier is meant for non-production workloads and evaluation. The other tiers offer progressively more power, features, and SLAs (service level agreements) with the Premium tier providing Azure Virtual Network and multi-region support. All tiers have a fixed price per hour. 
 
-Recently, Microsoft announced a [consumption pricing tier](https://azure.microsoft.com/en-us/updates/api-management-consumption-tier-is-in-preview/) which is currently in preview. Unlike the “pre-allocated” pricing tiers shown above, the consumption tier provides “serverless” functionality with instant provisioning and pay-per-Action pricing.
+Recently, Microsoft announced a [consumption pricing tier](https://azure.microsoft.com/updates/api-management-consumption-tier-is-in-preview/) which is currently in preview. Unlike the “pre-allocated” pricing tiers shown above, the consumption tier provides “serverless” functionality with instant provisioning and pay-per-Action pricing.
 
 ## SignalR Services
 
@@ -95,7 +92,7 @@ Under the hood, SignalR abstracts the transport technologies that create real-ti
 
 Figure 4-6 shown below depicts a set of HTTP Clients connecting to a Cloud App with Azure SignalR enabled.
 
-![Azure SignalR](media/image06.png)
+![Azure SignalR](media/azure-signalr-service.png)
 
 **Figure 4-6**. Azure SignalR
 
@@ -109,14 +106,12 @@ Available as a NuGet package, it targets the net standard 2.0, making it compati
 
 Its primary functionality is to forward incoming HTTP requests to downstream services. But, it also supports a variety of configurable gateway capabilities as shown below in Figure 4-7.
 
-![Ocelot Features](media/image07.png)
-
+![Ocelot Features](media/ocelot-features.png)
 **Figure 4-7**. Ocelot Features
 
 Each Ocelot gateway instance includes a simple JSON configuration file which specifies the up- and downstream addresses and configurable features as depicted below in Figure 4-8.
 
-![Basic Ocelot implementation](media/image08.png)
-
+![Basic Ocelot implementation](media/basic-ocelot-implementation.png)
 **Figure 4-8**. Basic Ocelot implementation
 
 In Figure 4-8, above, the client sends an HTTP request to the Ocelot gateway. Once received, Ocelot manipulates the HttpRequest object into a state specified by its configuration. At the end of pipeline, Ocelot creates new HttpRequestMessage which is passed to the downstream service. In reverse, Ocelot receives the HTTP response and sends it back to the client.

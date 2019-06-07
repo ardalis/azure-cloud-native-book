@@ -30,16 +30,14 @@ Often, one microservice may have the need to *query* another, requiring an immed
 
 One option for implementing this scenario are direct HTTP calls from the calling microservice to those it needs to query as shown below in Figure 4-9.
 
-![Direct HTTP communication](media/image09.png)
-
+![Direct HTTP communication](media/direct-http-communication.png)
 **Figure 4-9**. Direct HTTP communication
 
 While direct HTTP calls between microservices are relatively simple to implement, care should be taken to minimize this practice. Because what were once self-contained, independent services, able to evolve independently and deploy frequently, now become coupled to each other. As coupling among microservices increase, their architectural benefits diminish.
 
 While performing a request that executes infrequently and makes a single synchronous HTTP network call might be acceptable, high-volume calls that invoke multiple services can increase latency and negatively impact the performance, scalability and availability of your system. Worse yet, a long series of direct HTTP communication can lead to deep, complex chains of synchronous microservices calls, as shown below in Figure 4-10.
 
-![Chaining HTTP queries](media/image10.png)
-
+![Chaining HTTP queries](media/chaining-http-queries.png)
 **Figure 4-10**. Chaining HTTP queries
 
 While somewhat exaggerated, you can certainly imagine the risk in the design shown above. What happens if Step \#3 fails? Or Step \#8 fails? How do you recover? What if Step \#6 is slow because the underlying service is busy? How do you proceed? Even if all works correctly, think of the latency this call would incur, which is the sum of the latency of each of the steps shown above.
@@ -54,9 +52,8 @@ One option for reducing such coupling is implementing the [Materialized View Pat
 
 Another option for such a workflow orchestration might be an [Aggregator Service](https://devblogs.microsoft.com/cesardelatorre/designing-and-implementing-api-gateways-with-ocelot-in-a-microservices-and-container-based-architecture/), as shown below in purple in Figure 4-11.
 
-![Aggregator service](media/image11.png)
-
-**Figure4-11**. Aggregator service
+![Aggregator service](media/aggregator-service.png)
+**Figure 4-11**. Aggregator service
 
 The Aggregator service isolates an operation that makes calls to multiple backend services, centralizing its logic into an orchestration. Here, the purple Checkout Aggregator Microservice orchestrates the workflow for the Checkout operation, which includes calls to multiple services in a sequenced order.
 
@@ -64,8 +61,7 @@ The Aggregator service isolates an operation that makes calls to multiple backen
 
 Another approach to decouple synchronous HTTP messages is to implement a [Request-Reply Pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/RequestReply.html) using queuing functionality from a message broker. Communication using a queue is always a one-way channel, with a producer sending the message and consumer receiving it. With this pattern, both a request queue and response queue are implemented as shown below in Figure 4-12.
 
-![Request-reply pattern](media/image12.png)
-
+![Request-reply pattern](media/request-reply-pattern.png)
 **Figure 4-12**. Request-reply pattern
 
 Here, the message producer creates a query-based message that contains a unique correlation ID and places it into a request queue. The consuming service dequeues the messages, processes it and places the response into the response queue with the same correlation ID. The producer service dequeues the message, matches it with the correlation ID and continues processing. We cover queues in detail in the next section.
@@ -74,8 +70,7 @@ Here, the message producer creates a query-based message that contains a unique 
 
 Sometimes, a microservice may require another microservice to perform an action. For example, the Ordering microservice may need the Shipping microservice to create a shipment for an approved order. Often called a *command message*, the microservice invoking the action, called a Producer, makes a command to another service, the Consumer, by sending it a message as shown below in Figure 4-13.
 
-![Command interaction with a queue](media/image13.png)
-
+![Command interaction with a queue](media/command-interaction-with-queue.png)
 **Figure 4-13**. Command interaction with a queue
 
 Often, the Producer does not require a response and can simply *fire-and-forget* the message. If a reply is needed, the Consumer sends a separate message back to Producer on another channel. A command message is best sent asynchronously with the preferred infrastructure being a light-weight message broker which supports a message queue. In the above diagram, note how a queue separates and decouples both services.
@@ -102,8 +97,7 @@ That said, there are limitations with the service:
 
 Figure 4-14 below shows the hierarchy of an Azure Storage Queue.
 
-![Storage queue hierarchy](media/image14.png)
-
+![Storage queue hierarchy](media/storage-queue-hierarchy.png)
 **Figure 4-14**. Storage queue hierarchy
 
 Note above in the Figure 4-14 how storage queues are exposed as a service that sit on top of an Azure Storage account, the store in which the messages are stored.
@@ -130,28 +124,25 @@ However, there are some important caveats: Service Bus queues size is limited to
 
 Figure 4-15 below outlines the high-level architecture of a Service Bus queue.
 
-![Service Bus queue](media/image15.png)
-
+![Service Bus queue](media/service-bus-queue.png)
 **Figure 4-15**. Service Bus queue
 
 Note the point-to-point relationship in the Figure 4-15 above where two identical providers are enqueuing messages into a single Sever Bus queue and how each message is consumed by one (and only one) of the three identical consumers on the right. Next, we discuss how to implement messaging where different consumers may all be interested the same message.
 
 ## Events
 
-As discussed, asynchronous messaging is an effective way to decouple senders and consumers and avoid blocking while waiting for a response. However, a dedicated message queue for each consumer would not scale well when you may have many different consumers interested in the same message. A better approach for thesescenarios is a [Publish/Subscribe](https://docs.microsoft.com/en-us/azure/architecture/patterns/publisher-subscriber) pattern which enables you to implement [event-based communication](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/integration-event-based-microservice-communications).
+As discussed, asynchronous messaging is an effective way to decouple senders and consumers and avoid blocking while waiting for a response. However, a dedicated message queue for each consumer would not scale well when you may have many different consumers interested in the same message. A better approach for these scenarios is a [Publish/Subscribe](https://docs.microsoft.com/en-us/azure/architecture/patterns/publisher-subscriber) pattern which enables you to implement [event-based communication](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/integration-event-based-microservice-communications).
 
-Eventing is a two-step process. To start, a microservice can raise an event and publish it to a message broker, making it available to other services. Then, any other microservice can ask to be notified whenever the event is raised by subscribing to the event in the message broker. As a best practice, development teams should encapsulate the message broker plumbing inside a custom *EventBus* component which can expose the messaging operations. Figure 4-16 below depicts Microservice \#1 publishing an event to an *EventBus*, with Microservices \#2 and \#3 subscribing to and receiving the event.
+Eventing is a two-step process. To start, a microservice can raise an event and publish it to a message broker, making it available to other services. Then, any other microservice can ask to be notified whenever the event is raised by subscribing to the event in the message broker. As a best practice, development teams should encapsulate the message broker plumbing inside a custom *EventBus* component which can expose the messaging operations. Figure 4-16 depicts Microservice \#1 publishing an event to an *EventBus*, with Microservices \#2 and \#3 subscribing to and receiving the event.
 
-![Event-Driving messaging](media/image16.png)
-
-**Figure 4-16**. Event-Driving messaging
+![Event-Driven messaging](media/event-driven-messaging.png)
+**Figure 4-16**. Event-Driven messaging
 
 In the above scenario, Microservices \#2 and \#3 independently receive and operate on an event with no knowledge of each other, nor of Microservice \#1. They simply wait for a registered event to be published to the event bus and then act upon it.
 
 Typically, with eventing, we move from queuing technology to *topics*. A [topic](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-how-to-use-topics-subscriptions) is similar to a queue but supports a one-to-many messaging pattern where multiple subscribers can choose to receive a message sent by a publisher. Figure 4-17 below depicts a topic architecture.
 
-![Topic architecture](media/image17.png)
-
+![Topic architecture](media/top-architecture.png)
 **Figure 4-17**. Topic architecture
 
 In Figure 4-17, note how publishers send messages to the topic. But messages are not received directly from the topic. Instead, the topic is responsible for forwarding messages to the subscriptions for each registered subscriber. Each subscriber then can receive messages from its corresponding subscription. Think of each subscription as a standalone queue. An important component here is the *Rule (dark blue boxes)*. The rule acts as a filter determining messages that are forwarded to a specific subscription, enabling a subscription to listen only for messages that are important to it. In the figure above, if an “OrderCreated”event is published, the topic would send it to Subscription \#1 and Subscription \#3, but not to Subscription \#2 as the message is not a “QuoteSent.”
@@ -180,8 +171,7 @@ One of the sweet spots for Event Grid is its deep integration into the fabric of
 
 When publishing and subscribing to native events from Azure resources, no coding is required. With simple configuration, you can integrate events from one Azure resource to another leveraging built-in Topics and Subscriptions as plumbing. Figure 4-18 below depicts the anatomy of Event Grid.
 
-![Event Grid anatomy](media/image18.png)
-
+![Event Grid anatomy](media/event-grid-anatomy.png)
 **Figure 4-18**. Event Grid anatomy
 
 A major difference between EventGrid and Service Bus is the underlying *message exchange pattern*.
@@ -196,8 +186,7 @@ While Azure Service Bus and Event Grid provide great support for applications th
 
 Azure Event Hub is a data streaming platform and event ingestion service that collects, transforms and stores events. Fine-tuned to capture streaming data, such as continuous event notifications emitted from a telemetry context, it is highly scalable and can store and [process millions of events per second](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-about). It typically plays the role of the front door for an event pipeline, decoupling the ingest of the event stream from the consumption of those events, as shown in Figure 4-19 below.
 
-![Azure Event Hub](media/image19.png)
-
+![Azure Event Hub](media/azure-event-hub.png)
 **Figure 4-19**. Azure Event Hub
 
 Event Hub supports low latency and configurable time retention. Differing from queues and topics, Event Hubs retain event data after it has been read by a consumer. This feature enables other data analytic services, both internal and external, to replay the data for further analysis. Events stored in event hub are only deleted upon expiration of the retention period, which is 1-day by default, but configurable.
@@ -208,8 +197,7 @@ Event Hubs implement message streaming through a [partitioned consumer model](ht
 
 Instead from reading from the same resource, each consumer group reads across a subset, or partition, of the message stream. 
 
-![Event Hub partitioning](media/image20.png)
-
+![Event Hub partitioning](media/event-hub-partitioning.png)
 **Figure 4-20**. Event Hub partitioning
 
 For applications that must stream numbers of events, Azure Event Hub can be a robust and affordable solution.
@@ -225,4 +213,4 @@ Blah, blah, blah
 
 >[!div class="step-by-step"]
 >[Previous](front-end-communication.md)
->[Next](../distributed-data/index.md)
+>[Next](distributed-data/index.md)
