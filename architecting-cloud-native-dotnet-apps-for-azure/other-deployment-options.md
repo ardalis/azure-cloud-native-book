@@ -8,7 +8,6 @@ ms.date: 06/30/2019
 App Service (move from start of chapter to here?)
 ACI for testing single containers.
 
-
 >[!div class="step-by-step"]
 >[Previous](deploying-containers-in-azure.md)
->[Next](../implementing-a-cloud-native-app/index.md)
+>[Next](implementing-a-cloud-native-app.md)

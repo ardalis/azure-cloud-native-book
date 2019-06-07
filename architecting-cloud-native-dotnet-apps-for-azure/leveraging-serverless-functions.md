@@ -7,8 +7,6 @@ ms.date: 06/30/2019
 
 (Describe serverless and container support for it.)
 
-
-
 >[!div class="step-by-step"]
 >[Previous](leveraging-containers-and-orchestrators.md)
 >[Next](combining-containers-and-serverless-approaches.md)

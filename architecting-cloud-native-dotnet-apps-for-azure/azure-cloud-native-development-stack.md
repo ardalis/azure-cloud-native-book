@@ -117,7 +117,7 @@ The goal is an automated, predictable deployment that can be performed on demand
 
 ### Azure Pipelines
 
-The Azure cloud includes a new CI/CD service entitled [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/), which is part of the [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/) offering, as shown below in Figure 1-15.
+The Azure cloud includes a new CI/CD service entitled [Azure Pipelines](https://azure.microsoft.com/services/devops/pipelines/), which is part of the [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/) offering, as shown below in Figure 1-15.
 
 ![Azure Pipelines in DevOps](media/azure-pipelines-in-azure-devops.png)
 **Figure 1-15**. Azure Pipelines in DevOps
