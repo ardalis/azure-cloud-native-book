@@ -198,7 +198,7 @@ Cloud native apps play well to the practice of [Infrastructure as Code (IaC)](ht
 
 With IaC, you use tooling, such as [Azure Resource Manager](https://azure.microsoft.com/documentation/articles/resource-group-overview/) or [Terraform](https://www.terraform.io/), to declaratively specify the exact infrastructure that you desire. The script itself is flexible as it parameterizes the resource names,  locations, capacities and secrets. That script becomes an artifact of your project and is versioned and checked into source control. At any time, you can run the IaC script to provision your desired infrastructure. Moving forward, you can modify and rerun the script to update your environment. As the script is parameterized, you can run the same script across your different system environments (i.e., Dev, Test, Staging, Production) providing an identical blueprint of resources.
 
-We cover infrastructure automation in detail in the Automation chapter of this book.
+We cover infrastructure automation in detail in the Cloud Native DevOps chapter of this book.
 
 ### Automating Code
 
