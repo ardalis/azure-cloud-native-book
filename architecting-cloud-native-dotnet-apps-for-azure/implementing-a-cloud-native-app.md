@@ -12,5 +12,5 @@ Before starting on this chapter, it may help to download the eShopOnContainers r
 - [eShopOnContainers Reference Application](https://github.com/dotnet-architecture/eShopOnContainers)
 
 >[!div class="step-by-step"]
->[Previous](../index.md)
+>[Previous](other-deployment-options.md)
 >[Next](introducing-eshoponcontainers-reference-app.md)

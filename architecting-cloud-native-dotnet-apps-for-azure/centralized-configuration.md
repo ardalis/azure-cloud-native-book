@@ -12,4 +12,4 @@ As discussed in [Chapter 1](../introuction-to-cloud-native-applications/index.md
 
 >[!div class="step-by-step"]
 >[Previous](hosting-the-eshoponcontainers-application.md)
->[Next](../index.md)
+>[Next](cloud-native-communication-patterns/index.md)
