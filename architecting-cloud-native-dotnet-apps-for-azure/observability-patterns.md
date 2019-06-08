@@ -32,6 +32,8 @@ Finally, the number of users in some cloud applications is quite high. Imagine t
  
 Fortunately, there are some fantastic alternatives to using file system logs. A centralized log server to which all logs are sent fixes all the problems. Logs are collected by the applications and shipped to a central logging application which indexes and stores the logs. This class of system is capable of ingesting tens of gigabytes of logs every day. 
 
+It is also helpful to follow some standard practices when building logging which runs across many services. For instance, generating a correlation Id at the start of a length interaction and then logging it in each message related to that interaction makes it easier to search for all related messages. One need only find a single message and extract the correlation Id to find all the related messages. Another example is ensuring that the log format is the same for every service, regardless of the language or logging library it uses. This standardization will make reading logs much easier.
+
 ## Monitoring
 
 Having centralized logging for searching for issues is helpful in the event that a problem is discovered in the application. In an ideal world, however, end users should not be the ones reporting errors. By taking a proactive approach to failure detection problems can be detected and corrected before the end users are even aware that there has been an issue.
