@@ -39,11 +39,11 @@ Azure DevOps is divided into five major components: Boards, Repos, Pipelines, Te
 
 **Azure Pipelines** - A build and relese management system which supports tight integration with Azure. Builds can be run on a variety of platforms from Windows to Linux to MacOS. Build agents may be provisioned in the cloud or on premise. 
 
-**Azure Test Plans** - No QA person will be left behind with the test management and exploritory testing support offered by the Test Plans Features.
+**Azure Test Plans** - No QA person will be left behind with the test management and exploratory testing support offered by the Test Plans Features.
 
 **Azure Artifacts** - An artifact feed which allows companies to create their own, internal, versions of nuget, npm and others. It serves a double purpose of acting as a cache of upstream packages in the event of failure of a centralized repository.
 
-The top-level container in Azure DevOps is known as a Project. The components can be turned on and off for any project. If users want to manage their source code in GitHub but still take advantage of Azure Pipelines then that's perfectly possible. In fact, many open source projects have taken advantages of the [free builds](https://azure.microsoft.com/en-ca/blog/announcing-azure-pipelines-with-unlimited-ci-cd-minutes-for-open-source/) offered by Azure DevOps while keeping their source code on GitHub.
+The top-level container in Azure DevOps is known as a Project. The components can be turned on and off for any project. If users want to manage their source code in GitHub but still take advantage of Azure Pipelines then that's perfectly possible. In fact, many open source projects have taken advantages of the [free builds](https://azure.microsoft.com/en-ca/blog/announcing-azure-pipelines-with-unlimited-ci-cd-minutes-for-open-source/) offered by Azure DevOps while keeping their source code on GitHub. Some significant open source project such as [Visual Studio Code](https://code.visualstudio.com/), [yarn](https://yarnpkg.com/en/), [gulp](https://gulpjs.com/) and [NumPy](https://www.numpy.org/) have made the transition. 
 
 Each of these components provides some advantages for Cloud Native Applications but the three most useful are the source control, boards and pipelines.  
 
@@ -152,11 +152,89 @@ The sister of continuous integration is continuous delivery in which the freshly
 
 The environment to which continuous delivery delivers might be a test environment or, as is being done by many major technology companies, it could be the production environment. The latter requires an investment in high quality tests which can give confidence that a change is not going to break production for users. In the same way that continuous integration caught issues in the code early continuous delivery catches issues in the deployment process early. 
 
-Azure DevOps provides a set of tools to make continuous integration and deployment easier than ever. 
+The importance of automating the build and delivery process is accentuated by Cloud Native Applications. Deployments happen more frequently and to more environments so manually deploying boarders on impossible. 
 
-one per service
-multi-step builds
-checking in azure pipelines
+### Azure Builds
+
+Azure DevOps provides a set of tools to make continuous integration and deployment easier than ever. These tools are located under Azure Pipelines. The first of them is Azure Builds. This is a tool for running YAML based build definitions at scale. Users can either bring their own build machines (great for if the build requires a meticulously set up environment) or use a machine from a constantly refreshed pool of Azure hosted virtual machines.  These hosted build agents come pre-installed with a wide range of development tools for not just .NET development but for everything from Java to Python to iPhone development. 
+
+DevOps includes a wide range of out of the box build definitions which can be customized for any build. The build definitions are defined in a file called `azure-pipelines.yml` and checked into the repository so they can be versioned along with the source code. This makes it much easier to make changes to the build pipeline in a branch as the changes can be check into just that branch. An example `azure-pipelines.yml` for building an ASP.NET web application on full framework looks like
+
+```
+name: $(rev:r)
+
+variables:
+  version: 9.2.0.$(Build.BuildNumber)
+  solution: Portals.sln
+  artifactName: drop
+  buildPlatform: any cpu
+  buildConfiguration: release
+  
+pool:
+  name: Hosted VS2017
+  demands:
+  - msbuild
+  - visualstudio
+  - vstest
+
+steps:
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 4.4.1'
+  inputs:
+    versionSpec: 4.4.1
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: '$(solution)'
+    
+- task: VSBuild@1
+  displayName: 'Build solution'
+  inputs:
+    solution: '$(solution)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: VSTest@2
+  displayName: 'Test Assemblies'
+  inputs:
+    testAssemblyVer2: |
+     **\$(buildConfiguration)\**\*test*.dll
+     !**\obj\**
+     !**\*testadapter.dll
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: CopyFiles@2
+  displayName: 'Copy UI Test Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: UITests
+    TargetFolder: '$(build.artifactstagingdirectory)/uitests'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: '$(artifactName)'
+  condition: succeededOrFailed()
+```
+
+This build definition uses a number of built in tasks which make creating builds as simple as building a Lego set (simpler than the giant Millennium Falcon). For instance the NuGet task restores NuGet packages while the VSBuild task calls out to the Visual Studio build tools to perform the actual compilation. There are hundreds of different tasks available in Azure DevOps with thousands more which are community maintained. It is likely that no matter what build tasks you're looking to run somebody has built one already.
+
+Builds can be trigged manually, by a checkin, on a schedule or by the completion of another build. In most cases building on every checkin is desirable. Builds can be filtered so that different builds run against different parts of the repository or against different branches. This allows for scenarios like running fast builds with reduced testing on pull requests and running a full regression suite against the trunk on a nightly basis. 
+
+The end result of a build is a collection of files known as build artifacts. These can be passed along to the next step in the build process or added to an Azure Artifact feed so they can be consumed by other builds. 
+
+### Azure DevOps Releases
+
+Builds take care of compiling the software into a shippable package but the artifacts still need to be pushed out to a testing environment to complete continuous delivery. For this Azure DevOps uses a separate tool called Releases. Releases make use of the same library of tasks which were available to the Build but introduce a concept of "stages". A stage is an isolated environment into which the package is installed. For instance a product might make use of a develop, a QA and a production environment. Code is continuously delivered into the development environment where automated tests can be run against it. Once those tests pass the release moves onto the QA environment for manual testing. Finally the code is pushed to production where it is visible to everybody. 
+
+![An example release pipeline with Develop, QA and Production phases](media/release-pipeline.png)
+
+Each stage in the build can be automatically trigged by the completion of the previous phase. In many cases, however, this isn't desirable. Moving code into production might require approval from somebody. Releases supports this by allowing approvers at each step of the release pipeline. Rules can be set up such that a specific person or group of people must sign off on a release before it makes it to production. These gates allow for manual quality checks and also for compliance with any regulatory requirements pertaining to controls on what goes into production. 
+
+### Everybody gets a build pipeline
 
 # Infrastructure As Code
 
