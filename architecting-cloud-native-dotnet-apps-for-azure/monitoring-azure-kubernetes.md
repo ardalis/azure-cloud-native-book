@@ -37,6 +37,10 @@ No matter which orchestrator or operating system running the Azure Monitor daemo
 
 ![A sample dashboard showing logging and metric information from a number of running containers.](media/containers-dashboard.png)
 
+# Log.Finalize()
+
+Logging is one of the most overlooked and yet most important parts of deploying any application at scale. As the size and complexity of applications increase then so does the difficulty of debugging them. Having top quality logs available makes debugging much easier and moves it from the realm of "nearly impossible" to "a pleasant experience".
+
 >[!div class="step-by-step"]
 >[Previous](azure-monitor.md)
 >[Next](identity.md)
