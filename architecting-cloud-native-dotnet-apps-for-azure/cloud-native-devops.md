@@ -234,14 +234,92 @@ Builds take care of compiling the software into a shippable package but the arti
 
 Each stage in the build can be automatically trigged by the completion of the previous phase. In many cases, however, this isn't desirable. Moving code into production might require approval from somebody. Releases supports this by allowing approvers at each step of the release pipeline. Rules can be set up such that a specific person or group of people must sign off on a release before it makes it to production. These gates allow for manual quality checks and also for compliance with any regulatory requirements pertaining to controls on what goes into production. 
 
-### Everybody gets a build pipeline
+### Everybody Gets a Build Pipeline
+
+There is no cost to configuring many build pipelines so it is advantageous to have at least one build pipeline per microservice. Ideally microservices are independently deployable to any environment so having each one able to be released via its own pipeline without releasing a mass of unrelated code is perfect. Each pipeline can have its own set of approvals allowing for variations in build process for each service. 
+
+### Versioning Releases
+
+One drawback to using the Releses functionality is that it cannot be defined in a checked in `azure-pipelines.yml` file. There are many reason you might want to do that from having per-branch release definitions to including a release skeleton in your project template. Fortunately work is ongoing to shift some of the stages support into the Build component. This will be known as multi-stage build and the first version are available right now!
 
 # Infrastructure As Code
 
-why
-terraform
-arm
-pulumi
+Cloud Native Applications tend to make use of all sorts of fantastic Platform as a Service component. On a cloud platform like Azure these components might include things like storage, Service Bus and the SignalR service. As applications become more complicated the number of these services in use is likely to grow. Just as how continuous delivery broke the traditional model of deploying to an environment manually the rapid pace of change also broke the model of having a centralized IT group manage environments. 
+
+Building environments can, and should, also be automated. There is a wide range of very well thought out tools which can make the process easy. 
+
+## Azure Resource Manager Templates
+
+Also known as ARM Template, Azure Resource Manager Templates are a JSON-based language for defining various resources in Azure. The basic schema looks something like this:
+
+```
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "",
+  "apiProfile": "",
+  "parameters": {  },
+  "variables": {  },
+  "functions": [  ],
+  "resources": [  ],
+  "outputs": {  }
+}
+```
+
+Within this template one might a storage container inside the resources section like so
+
+```
+"resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('storageAccountName')]",
+      "location": "[parameters('location')]",
+      "apiVersion": "2018-07-01",
+      "sku": {
+        "name": "[parameters('storageAccountType')]"
+      },
+      "kind": "StorageV2",
+      "properties": {}
+    }
+  ],
+```
+
+The templates can be parameterized so that one template can be reused with different settings to define develop, QA and production environments. This help eliminate surprises when migrating to a higher environment that is set up differently from the lower environments. The resources defined in a template are typically all created within a single resource group on Azure (it is possible to define multiple resource groups in a single ARM template but unusual). This makes it very easy to delete an environment by simply deleting the resource group as a whole. Cost analysis can also be run at the resource group level allowing for quick accounting of which environments are costing what.
+
+There are many example templates defined in the [Azure Quickstart Templates](https://github.com/Azure/azure-quickstart-templates) project on GitHub which will give a leg up when starting on a new template or adding to an existing one. 
+
+ARM templates can be run in a variety of ways. Perhaps the simplest way is to simply paste them into the Azure Portal. For experimental deployments this can be very quick. They can also be run as part of build or release process in Azure DevOps. There are tasks which will leverage connections into Azure to run the templates. Changes to ARM templates are applied incrementally meaning that to add a new resource requires just adding it to the template. The tooling will handle diffing the current resource group with the desired resource group defined in the template. Resources will then be created or altered so they match what is defined in the template.  
+
+## Terraform
+
+A perceived disadvantage of ARM templates is that they are specific to the Azure cloud. It is quite unusual to create applications which include resources from more than one cloud but in cases where the business relies on spectacular uptime the cost of supporting multiple clouds might be worthwhile. If there were one templating language which could be used across every cloud then it would also allow for developer skills to be much more portable. 
+
+Several technologies exist which do just that! The most mature offering in that space is known as [Terraform](https://www.terraform.io/). It supports every major cloud player from Azure to GCP to AWS to AliCloud as well as literally dozens of minor players such as Heroku and DigitalOcean. Instead of using JSON as the template definition language it makes use of the slightly more terse YAML. 
+
+An example Terraform file looks lke 
+
+```
+provider "azurerm" {
+  version = "=1.28.0"
+}
+
+resource "azurerm_resource_group" "test" {
+  name     = "production"
+  location = "West US"
+}
+
+resource "azurerm_storage_account" "testsa" {
+  name                     = "storageaccountname"
+  resource_group_name      = "${azurerm_resource_group.testrg.name}"
+  location                 = "westus"
+  account_tier             = "Standard"
+  account_replication_type = "GRS"
+
+}
+```
+
+Terraform does a better job of providing sensible error messages when a resource cannot be deployed due to an error in the template. This is an area where ARM templates have some ongoing challenges. 
+
+Just as with ARM templates there are command line tools which can be used to deploy Terraform templates. Of course, there are also community created tasks in Azure pipelines which can validate and apply Terraform template.
 
 # Cloud Native Application Bundles
 
