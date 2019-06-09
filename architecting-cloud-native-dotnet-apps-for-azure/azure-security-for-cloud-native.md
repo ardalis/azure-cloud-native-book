@@ -5,11 +5,42 @@ ms.date: 06/30/2019
 ---
 # Azure Security for Cloud Native Apps
 
+Cloud Native Applications can be both easier and more difficult to secure than traditional applications. On the down side there are a lot more smaller applications which need to be secured so more energy must be dedicated to building out the security infrastructure. The heterogeneous nature of programming languages and styles in most service deployments also means that more attention needs to be paid to security bulletins from a range of providers. 
+
+On the flip side smaller services, each with their own data store, limit the scope of an attack. Should an attacker compromise one system it may be more difficult for them to make the jump to another system than it would have been in a monolithic application. Process boundaries are pretty strong boundaries. Also if a database backup should leak then the damage should be more limited as that database contains only a subset of data and is unlikely to contain personally identifiable information if it does. 
+
+No matter if the advantages outweigh the disadvantages of Cloud Native Applications the same sort of holistic security mindset must be followed. Security and secure thinking must be part of every step of the development and operations story. When planning an application ask questions like
+
+* What would be the impact of this data being lost?
+* How can we limit the damage from bad data being injected into this service?
+* Who should have access to this data?
+* Are there auditing policies in place around the development and release process?
+
+holistic
+web firewall
+least exposer
+principle of least privilege
 https://azure.microsoft.com/support/trust-center/
 
-# Azure Network Infrastructure (1-2 pages)
-Azure Virtual Networks
-Network Security Groups Maybe add something on e.g. using virtual networks with K8s and other application infrastructure
+# Azure Network Infrastructure
+
+In an on-premise deployment environment a great deal of energy is dedicated to setting up networking. Setting up routers, switches and the such is complicated work. Networks allow certain resources to talk to other resources and prevent access in some cases. A frequent network rule is to restrict access to the production environment from the development environment on the off chance that a half-developed piece of code runs awry and deletes a swath of data. 
+
+Out of the box most PaaS Azure resources have only the most basic, and most permissive networking set up. For instance anybody on the Internet can access an app service. New SQL server instances typically come restricted so that external parties cannot access them but the IP address ranges used by Azure itself are permitted through. So while the SQL server is protected from external threats an attacker need only set up an Azure bridgehead from which they can launch attacks against all SQL instances on Azure. 
+
+Fortunately most Azure resources can be placed into an Azure Virtual Network which permits finer grained access control. In much the same way that on-premise networks establish private networks which are protected from the wider world Virtual Networks are islands of private IP addresses located within the Azure network. 
+
+![A virtual network in Azure](media/virtual-network.png)
+
+In the same way that on-premise networks would have a firewall governing access to the network a similar firewall can be established at the boundary of the Virtual Network. By default all the resources on a Virtual Network can still talk to the Internet, it is only incoming connections which require some form of load balancer. 
+
+With the network established internal resources like storage accounts can be set up to only allow for access by resources which are also on the Virtual Network. This provides an extra level of security, should the keys for that storage account be leaked attackers would be unable to connect to it to exploit the leaked keys. This is another example of the principle of least privilege.
+
+Continuing down the path of exemplifying the principle of least privilege not every resource within a Virtual Network needs to talk to every other resource. For instance in an application which provides a web API over a storage account and a SQL database it is unlikely that the database and the storage account need to be able to talk to one another. Any data sharing between them would go through the web application. Thus a [network security group(NSG)](https://docs.microsoft.com/en-us/azure/virtual-network/security-overview) could be used to deny traffic between the two services. 
+
+A policy of denying communication between resources can be annoying to implement, especially coming from a background of using Azure without traffic restrictions. On some other clouds the concept of network security groups is much more prevalent. For instance on AWS the default policy is that resources cannot communicate amongst themselves until enabled by rules in a NSG. While slower to develop this more restrictive environment provides a more secure default. Making use of proper DevOps practices, especially using [ARM or Terraform](infrastructure-as-code.md) to manage permissions can make controlling the rules easier.
+
+Virtual Networks can also be useful when setting up communication between resources which remain on-premise and those in the cloud. A virtual private network can be used to seamlessly attach the two networks together. This allows running a virtual Network without any sort of gateway for scenarios where all the users are on site. There are a number of technologies which can be used to establish this network. The simplest is to use a [site-to-site VPN](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways?toc=%2fazure%2fvirtual-network%2ftoc.json#s2smulti) which can be established between many routers and Azure. Traffic is encrypted and tunneled over the Internet at the same cost per byte as any other traffic. For scenarios where more bandwidth or more security is desirable Azure offers a service called [Express Route](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways?toc=%2fazure%2fvirtual-network%2ftoc.json#ExpressRoute) which uses a private circuit between an on-premise network and Azure. It is more costly and difficult to establish but also more secure. 
 
 # Role Based Access Control for restricting access to Azure resources
 
@@ -29,9 +60,7 @@ The first component in RBAC is a security principal. A security principal can be
 
 * Managed identity - An Azure Active Directory identity managed by Azure. Managed identities are typically used when developing cloud applications which manage the credentials for authenticating to Azure services.
 
-The security principal can be applied to most any resource. This means that it is possible to assign a security principal to a container running inside of Azure Kubernetes permitting it to access secrets stored in Key Vault. An Azure Function could take on a permission allowing it to talk to an Active Directory instance to validate a JWT for a calling user. Once services are enabled with a service principal their permissions can be managed granularly using roles and scopes. 
-
-Frequenly 
+The security principal can be applied to most any resource. This means that it is possible to assign a security principal to a container running inside of Azure Kubernetes permitting it to access secrets stored in Key Vault. An Azure Function could take on a permission allowing it to talk to an Active Directory instance to validate a JWT for a calling user. Once services are enabled with a service principal their permissions can be managed granularly using roles and scopes.  
 
 ## Roles
 

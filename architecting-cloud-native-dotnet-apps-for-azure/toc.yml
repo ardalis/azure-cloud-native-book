@@ -77,7 +77,9 @@
   - name: Cloud Native DevOps
     href: cloud-native-devops.md
     items:
-    - name: Azure Security for Cloud Native Apps
-      href: azure-security-for-cloud-native.md
+    - name: Infrastructure as Code
+      href: infrastructure-as-code.md
+    - name: Cloud Native Application Bundles
+      href: cloud-native-application-bundles.md
   - name: Key takeaways
     href: key-takeaways.md
