@@ -11,8 +11,57 @@ https://azure.microsoft.com/support/trust-center/
 Azure Virtual Networks
 Network Security Groups Maybe add something on e.g. using virtual networks with K8s and other application infrastructure
 
-# RBAC for restricting access to Azure resources
+# Role Based Access Control for restricting access to Azure resources
 
+Also known as RBAC, Role Based Access Control is a system that provides an identity to applications running in Azure. Applications can access resources using this identity instead of or in addition to using keys or passwords. 
+
+## Security Principals
+
+The first component in RBAC is a security principal. A security principal can be a user, group, service principal or managed identity. 
+
+![Different types of security principals](media/rbac-security-principal.png)
+
+* User - Any user who has an account in Azure Active Directory is a user. 
+
+* Group - A collection of users from Azure Active Directory. As a member of a group a user takes on the roles of that group in addition to their own.
+
+* Service principal - A security identity under which service or applications run. 
+
+* Managed identity - An Azure Active Directory identity managed by Azure. Managed identities are typically used when developing cloud applications which manage the credentials for authenticating to Azure services.
+
+The security principal can be applied to most any resource. This means that it is possible to assign a security principal to a container running inside of Azure Kubernetes permitting it to access secrets stored in Key Vault. An Azure Function could take on a permission allowing it to talk to an Active Directory instance to validate a JWT for a calling user. Once services are enabled with a service principal their permissions can be managed granularly using roles and scopes. 
+
+Frequenly 
+
+## Roles
+
+A security principal can take on many roles or, using a more sartorial analogy, wear many hats. Each role defines a series of permissions such as "Read messages from Azure Service Bus endpoint". The effective permissions of a security principal is the combination of all the permissions assigned to all the roles that security principal has. Azure has a large number of built in roles and users can define their own roles. 
+
+![RBAC role defintions](media/rbac-role-definition.png)
+
+Built into Azure are also a number of high level roles Owner, Contributor, Reader and User Account Administrator. With the Owner role a security principal can access all resources and allocate permissions to others. A contributor has the same level of access to all resources but cannot allocate permissions. A Reader can only view existing Azure resources and a User Account Administrator is permitted to manage access to Azure resources. 
+
+More granular built-in roles such as [DNS Zone Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#dns-zone-contributor) have rights limited to a single service. Security principals can take on any number of roles. 
+
+## Scopes
+
+Roles can be applied to a restricted set of resources inside of Azure. For instance applying scope to the previous example of reading from a Service Bus queue the permission can be narrowed to a single queue: "Read messages from Azure Service Bus endpoint `blah.servicebus.windows.net/queue1`"
+
+The scope can be as narrow as a single resource or it can be applied to an entire resource group, subscription or even management group. 
+
+When testing if a security principal has a certain permission the combination of role and scope are taken into account. This combination provides for very powerful authorization mechanism.
+
+## Deny
+
+Previously only "allow" rules were permitted for RBAC. This made some scopes quite complicated to build. For instance allowing a security principal access to all storage accounts except one required granting explicit permission to a potentially endless list of storage accounts. Any time a new storage account was created it would have to be added to this list of accounts. This added management overhead which certainly wasn't desirable. 
+
+Deny rules take precedence over allow rules. Now representing the same "allow all but one" scope could be represented as two rules "allow all" and "deny this one specific one". Deny rules not only ease management but allow for resources which are extra secure by denying access to everybody.
+
+## Checking Access
+
+As you can imagine having a large number number of roles and scopes can make figuring out the effective permission of a service principal quite difficult. Piling deny rules on top of that only serves to increase the complexity. Fortunately, there is a permissions calculator which is able to show the effective permissions for any service principal. It is typically found under the IAM tab in the portal
+
+![Permission calculator for an app service](media/check-rbac.png)
 
 # Securing Secrets
 
