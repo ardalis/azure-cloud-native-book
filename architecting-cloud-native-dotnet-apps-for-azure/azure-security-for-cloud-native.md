@@ -9,6 +9,8 @@ Cloud Native Applications can be both easier and more difficult to secure than t
 
 On the flip side smaller services, each with their own data store, limit the scope of an attack. Should an attacker compromise one system it may be more difficult for them to make the jump to another system than it would have been in a monolithic application. Process boundaries are pretty strong boundaries. Also if a database backup should leak then the damage should be more limited as that database contains only a subset of data and is unlikely to contain personally identifiable information if it does. 
 
+## Threat Modeling
+
 No matter if the advantages outweigh the disadvantages of Cloud Native Applications the same sort of holistic security mindset must be followed. Security and secure thinking must be part of every step of the development and operations story. When planning an application ask questions like
 
 * What would be the impact of this data being lost?
@@ -16,11 +18,58 @@ No matter if the advantages outweigh the disadvantages of Cloud Native Applicati
 * Who should have access to this data?
 * Are there auditing policies in place around the development and release process?
 
-holistic
-web firewall
-least exposer
-principle of least privilege
-https://azure.microsoft.com/support/trust-center/
+All these questions are part of a process called [Threat Modeling](https://docs.microsoft.com/en-us/azure/security/azure-security-threat-modeling-tool) which aims to answer the question of what threats there are to the system, how likely the threats are and the potential damage from them. 
+
+Once the list of threats has been established a decision need to be made about whether or not they are worth mitigating. Sometimes a threat is so unlikely and expensive to plan for that it is not worth expending energy on it. For instance it is possible that some state level actor is able to inject changes into the design of a process used by millions of devices. Now instead of running a certain piece of code in [Ring 3](https://en.wikipedia.org/wiki/Protection_ring) that code is run in Ring 0. This allows an exploit which can bypass the hypervisor and run attack code on the bare metal machines; permitting attacks on all the virtual machines running on that hardware.
+
+The altered processors are difficult to detect without a microscope and advanced knowledge of the on silicon design of that processor. This scenario is very unlikely and extremely expensive to mitigate so it is unlikely that any threat model would recommend building exploit protection for it. 
+
+More likely threats such as broken access controls permitting Id incrementing attacks (replacing Id=2 with Id=3 in the URL) or SQL injection are more attractive to build protections against. The mitigations for these are quite reasonable to build in and prevent embarrassing security hole which smear the company's reputation. 
+
+## Principle of Least Privilege
+
+One of the founding ideas in computer security is the Principle of Least Privilege (PoLP). It is actually a foundational idea in most any form of security be it digital or physical. In short the principle is that any user or process should have the smallest possible number of rights possible to perform its task. 
+
+As an example think of the tellers at a bank: accessing the safe is an pretty uncommon activity. Thus the average teller is unable to open the safe themselves. To gain access they need to escalate their request through a bank manager who performs additional security checks. 
+
+In a computer system a fantastic example is the user rights of a user connecting to a database. In many cases there is a single user account used to both build the database structure and run the application. Except in extreme cases the account running the application does not need the ability to update schema information. There should be several accounts which provide different levels of privilege. The application should use only the permission level which grants read and write access to the data in the table. This sort of protection would eliminate attacks which aimed to drop database tables or introduce nefarious triggers. 
+
+Almost every part of building out a Cloud Native Application can benefit from remembering the principle of least privilege. It can be found at play in setting up firewalls, network security groups and roles and scopes in RBAC.
+
+## Penetration Testing
+
+As applications become more complicated the number of attack vectors increases at an alarming rate. Threat modeling is flawed in that it tends to be executed by the same people building the system. In the same way that many developers have trouble envisioning user interactions and thus build unusable user interfaces most developers have difficulty seeing every attack vector. It may also be that the developers building the system are not well versed in attack methodologies and miss something crucial. 
+
+Penetration testing or "Pen Testing" involves bringing in external actors to attempt to attack the system. These attackers may be an external consulting company or simply developers with good understanding of security from another part of the business. They are given carte blanch to attempt to subvert the system. Frequently they will find extensive security holes which need to be patched. Sometimes the attack vector will be something totally unexpected like exploiting a phishing attack against the CEO.
+
+Azure itself is constantly undergoing attacks from a [team of hacker inside of Microsoft](https://azure.microsoft.com/en-ca/resources/videos/red-vs-blue-internal-security-penetration-testing-of-microsoft-azure/). Over the years they have been the first to find dozens of potentially catastrophic attack vectors, closing them before they can be exploited externally. The more tempting a target the more likely that eternal actors will attempt to exploit it and there are few targets in the world more tempting than Azure. 
+
+## Monitoring
+
+Should an attacker attempt to penetrate an application there should be some warning of it. Frequently attacks can be spotted by examining the logs from services. Attacks leave telltale signs which can be spotted before they succeed. For instance an attacker attempting to guess a password will make many requests to a login system. Monitoring around the login system can detect weird patters which are out of line with the typical access pattern. This can be turned into an alert which can, in turn alert an operations person to activate some sort of counter-measure. A highly mature monitoring system might even take action based on these deviations proactively adding rules to block requests or throttle responses. 
+
+## Securing the Build
+
+One place where security is often overlooked is around the build process. Not only should the build run security checks such as scanning for insecure code or checked in credentials but the build itself should be secure. If the build server is compromised then this provides a fantastic vector for introducing arbitrary code into the product. 
+
+Imagine that an a attacker is looking to steal the passwords of people logging into a web application. They could introduce a build step which modifies the checked out code to mirror any login request to another server. The next time code progresses through the build it is silently updated. The source code vulnerability scanning won't catch this as it runs prior to the build. Equally nobody will catch it in a code review because the build steps reside on the build server. The exploited code will progress to production where it will be able to harvest passwords. There is likely no audit log of changes to the build process or at least nobody monitoring the audit. 
+
+This is a perfect example of a seemingly low value target that can be used to break into the system. Once an attacker breaches the perimeter of the system they can start working on finding ways to elevate their permissions to the point that they can cause real harm anywhere they like.
+
+## Building Secure Code
+
+The .Net Framework is already a quite secure framework. It avoids some of the pitfalls of unmanaged code such as walking off the ends of arrays. Work is actively done to fix security holes as they are discovered. There is even a [bug bounty program](https://www.microsoft.com/en-us/msrc/bounty) which pays researchers to find issues in the framework and report them instead of exploiting them. 
+
+There are many ways to make .Net code more secure. Following guidelines such as [these](https://docs.microsoft.com/en-us/dotnet/standard/security/secure-coding-guidelines) is a reasonable step to take to ensure that code is secure from the ground up. The [OWASP top 10](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_2017_Project) is another invaluable guide for building secure code.
+
+The build process is a good place to put scanning tools to detect problems in source code before they make it into production. Most every project has dependencies on some other packages. A tool which can scan for outdated packages will catch problems in a nightly build. Even when building Docker images it is useful to check and make sure that the base image does not have known vulnerabilities. Another thing to check is that nobody has accidentally checked in credentials. 
+
+## Built in Security 
+
+Azure is designed to balance usability and security for the majority of users. Different users are going to have different security requirements so will need to fine tune their approach to cloud security. Microsoft publishes a great deal of security information in the [Trust Center](https://azure.microsoft.com/support/trust-center/). This should be the first stop for those interested in understanding how the built in attack mitigation technologies work.
+
+Within the Azure portal the [Azure Advisor](https://azure.microsoft.com/en-ca/services/advisor/) is a system that is constantly scanning an environment and making recomendations. Some of these recommendations are designed to save users money but others are designed to pick out potentially insecure configurations such as having a storage container open to the world and not protected by a Virtual Network.
+
 
 # Azure Network Infrastructure
 
