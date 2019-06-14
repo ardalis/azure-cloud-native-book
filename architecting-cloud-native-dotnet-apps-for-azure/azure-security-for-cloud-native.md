@@ -20,21 +20,21 @@ No matter if the advantages outweigh the disadvantages of Cloud Native Applicati
 
 All these questions are part of a process called [Threat Modeling](https://docs.microsoft.com/en-us/azure/security/azure-security-threat-modeling-tool) which aims to answer the question of what threats there are to the system, how likely the threats are and the potential damage from them. 
 
-Once the list of threats has been established a decision need to be made about whether or not they are worth mitigating. Sometimes a threat is so unlikely and expensive to plan for that it is not worth expending energy on it. For instance it is possible that some state level actor is able to inject changes into the design of a process used by millions of devices. Now instead of running a certain piece of code in [Ring 3](https://en.wikipedia.org/wiki/Protection_ring) that code is run in Ring 0. This allows an exploit which can bypass the hypervisor and run attack code on the bare metal machines; permitting attacks on all the virtual machines running on that hardware.
+Once the list of threats has been established a decision needs to be made about whether or not they are worth mitigating. Sometimes a threat is so unlikely and expensive to plan for that it is not worth expending energy on it. For instance it is possible that some state level actor is able to inject changes into the design of a process used by millions of devices. Now instead of running a certain piece of code in [Ring 3](https://en.wikipedia.org/wiki/Protection_ring) that code is run in Ring 0. This allows an exploit which can bypass the hypervisor and run attack code on the bare metal machines; permitting attacks on all the virtual machines running on that hardware.
 
 The altered processors are difficult to detect without a microscope and advanced knowledge of the on silicon design of that processor. This scenario is very unlikely and extremely expensive to mitigate so it is unlikely that any threat model would recommend building exploit protection for it. 
 
-More likely threats such as broken access controls permitting Id incrementing attacks (replacing Id=2 with Id=3 in the URL) or SQL injection are more attractive to build protections against. The mitigations for these are quite reasonable to build in and prevent embarrassing security hole which smear the company's reputation. 
+More likely threats such as broken access controls permitting Id incrementing attacks (replacing Id=2 with Id=3 in the URL) or SQL injection are more attractive to build protections against. The mitigations for these are quite reasonable to build in and prevent embarrassing security holes which smear the company's reputation. 
 
 ## Principle of Least Privilege
 
-One of the founding ideas in computer security is the Principle of Least Privilege (PoLP). It is actually a foundational idea in most any form of security be it digital or physical. In short the principle is that any user or process should have the smallest possible number of rights possible to perform its task. 
+One of the founding ideas in computer security is the Principle of Least Privilege (PoLP). It is actually a foundational idea in most any form of security be it digital or physical. In short the principle is that any user or process should have the smallest number of rights possible to perform its task. 
 
-As an example think of the tellers at a bank: accessing the safe is an pretty uncommon activity. Thus the average teller is unable to open the safe themselves. To gain access they need to escalate their request through a bank manager who performs additional security checks. 
+As an example think of the tellers at a bank: accessing the safe is a pretty uncommon activity. Thus the average teller is unable to open the safe themselves. To gain access they need to escalate their request through a bank manager who performs additional security checks. 
 
-In a computer system a fantastic example is the user rights of a user connecting to a database. In many cases there is a single user account used to both build the database structure and run the application. Except in extreme cases the account running the application does not need the ability to update schema information. There should be several accounts which provide different levels of privilege. The application should use only the permission level which grants read and write access to the data in the table. This sort of protection would eliminate attacks which aimed to drop database tables or introduce nefarious triggers. 
+In a computer system a fantastic example is the user rights of a user connecting to a database. In many cases there is a single user account used to both build the database structure and run the application. Except in extreme cases the account running the application does not need the ability to update schema information. There should be several accounts which provide different levels of privilege. The application should use only the permission level which grants read and write access to the data in the tables. This sort of protection would eliminate attacks which aimed to drop database tables or introduce nefarious triggers. 
 
-Almost every part of building out a Cloud Native Application can benefit from remembering the principle of least privilege. It can be found at play in setting up firewalls, network security groups and roles and scopes in RBAC.
+Almost every part of building out a Cloud Native Application can benefit from remembering the principle of least privilege. It can be found at play in setting up firewalls, network security groups, and roles and scopes in RBAC.
 
 ## Penetration Testing
 
@@ -42,11 +42,11 @@ As applications become more complicated the number of attack vectors increases a
 
 Penetration testing or "Pen Testing" involves bringing in external actors to attempt to attack the system. These attackers may be an external consulting company or simply developers with good understanding of security from another part of the business. They are given carte blanch to attempt to subvert the system. Frequently they will find extensive security holes which need to be patched. Sometimes the attack vector will be something totally unexpected like exploiting a phishing attack against the CEO.
 
-Azure itself is constantly undergoing attacks from a [team of hacker inside of Microsoft](https://azure.microsoft.com/en-ca/resources/videos/red-vs-blue-internal-security-penetration-testing-of-microsoft-azure/). Over the years they have been the first to find dozens of potentially catastrophic attack vectors, closing them before they can be exploited externally. The more tempting a target the more likely that eternal actors will attempt to exploit it and there are few targets in the world more tempting than Azure. 
+Azure itself is constantly undergoing attacks from a [team of hackers inside of Microsoft](https://azure.microsoft.com/resources/videos/red-vs-blue-internal-security-penetration-testing-of-microsoft-azure/). Over the years they have been the first to find dozens of potentially catastrophic attack vectors, closing them before they can be exploited externally. The more tempting a target the more likely that eternal actors will attempt to exploit it and there are few targets in the world more tempting than Azure. 
 
 ## Monitoring
 
-Should an attacker attempt to penetrate an application there should be some warning of it. Frequently attacks can be spotted by examining the logs from services. Attacks leave telltale signs which can be spotted before they succeed. For instance an attacker attempting to guess a password will make many requests to a login system. Monitoring around the login system can detect weird patters which are out of line with the typical access pattern. This can be turned into an alert which can, in turn alert an operations person to activate some sort of counter-measure. A highly mature monitoring system might even take action based on these deviations proactively adding rules to block requests or throttle responses. 
+Should an attacker attempt to penetrate an application there should be some warning of it. Frequently attacks can be spotted by examining the logs from services. Attacks leave telltale signs which can be spotted before they succeed. For instance an attacker attempting to guess a password will make many requests to a login system. Monitoring around the login system can detect weird patterns which are out of line with the typical access pattern. This can be turned into an alert which can, in turn, alert an operations person to activate some sort of counter-measure. A highly mature monitoring system might even take action based on these deviations proactively adding rules to block requests or throttle responses. 
 
 ## Securing the Build
 
@@ -73,15 +73,15 @@ Within the Azure portal the [Azure Advisor](https://azure.microsoft.com/en-ca/se
 
 # Azure Network Infrastructure
 
-In an on-premise deployment environment a great deal of energy is dedicated to setting up networking. Setting up routers, switches and the such is complicated work. Networks allow certain resources to talk to other resources and prevent access in some cases. A frequent network rule is to restrict access to the production environment from the development environment on the off chance that a half-developed piece of code runs awry and deletes a swath of data. 
+In an on-premises deployment environment a great deal of energy is dedicated to setting up networking. Setting up routers, switches, and the such is complicated work. Networks allow certain resources to talk to other resources and prevent access in some cases. A frequent network rule is to restrict access to the production environment from the development environment on the off chance that a half-developed piece of code runs awry and deletes a swath of data. 
 
 Out of the box most PaaS Azure resources have only the most basic, and most permissive networking set up. For instance anybody on the Internet can access an app service. New SQL server instances typically come restricted so that external parties cannot access them but the IP address ranges used by Azure itself are permitted through. So while the SQL server is protected from external threats an attacker need only set up an Azure bridgehead from which they can launch attacks against all SQL instances on Azure. 
 
-Fortunately most Azure resources can be placed into an Azure Virtual Network which permits finer grained access control. In much the same way that on-premise networks establish private networks which are protected from the wider world Virtual Networks are islands of private IP addresses located within the Azure network. 
+Fortunately most Azure resources can be placed into an Azure Virtual Network which permits finer grained access control. In much the same way that on-premises networks establish private networks which are protected from the wider world Virtual Networks are islands of private IP addresses located within the Azure network. 
 
-![A virtual network in Azure](media/virtual-network.png)
+![Figure 10-0 A virtual network in Azure](media/virtual-network.png)
 
-In the same way that on-premise networks would have a firewall governing access to the network a similar firewall can be established at the boundary of the Virtual Network. By default all the resources on a Virtual Network can still talk to the Internet, it is only incoming connections which require some form of load balancer. 
+In the same way that on-premises networks would have a firewall governing access to the network a similar firewall can be established at the boundary of the Virtual Network. By default all the resources on a Virtual Network can still talk to the Internet, it is only incoming connections which require some form of explicit firewall exception. 
 
 With the network established internal resources like storage accounts can be set up to only allow for access by resources which are also on the Virtual Network. This provides an extra level of security, should the keys for that storage account be leaked attackers would be unable to connect to it to exploit the leaked keys. This is another example of the principle of least privilege.
 
@@ -91,7 +91,7 @@ Continuing down the path of exemplifying the principle of least privilege not ev
 
 A policy of denying communication between resources can be annoying to implement, especially coming from a background of using Azure without traffic restrictions. On some other clouds the concept of network security groups is much more prevalent. For instance on AWS the default policy is that resources cannot communicate amongst themselves until enabled by rules in a NSG. While slower to develop this more restrictive environment provides a more secure default. Making use of proper DevOps practices, especially using [ARM or Terraform](infrastructure-as-code.md) to manage permissions can make controlling the rules easier.
 
-Virtual Networks can also be useful when setting up communication between resources which remain on-premise and those in the cloud. A virtual private network can be used to seamlessly attach the two networks together. This allows running a virtual Network without any sort of gateway for scenarios where all the users are on site. There are a number of technologies which can be used to establish this network. The simplest is to use a [site-to-site VPN](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways?toc=%2fazure%2fvirtual-network%2ftoc.json#s2smulti) which can be established between many routers and Azure. Traffic is encrypted and tunneled over the Internet at the same cost per byte as any other traffic. For scenarios where more bandwidth or more security is desirable Azure offers a service called [Express Route](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways?toc=%2fazure%2fvirtual-network%2ftoc.json#ExpressRoute) which uses a private circuit between an on-premise network and Azure. It is more costly and difficult to establish but also more secure. 
+Virtual Networks can also be useful when setting up communication between resources which remain on-premises and those in the cloud. A virtual private network can be used to seamlessly attach the two networks together. This allows running a virtual network without any sort of gateway for scenarios where all the users are on site. There are a number of technologies which can be used to establish this network. The simplest is to use a [site-to-site VPN](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways?toc=%2fazure%2fvirtual-network%2ftoc.json#s2smulti) which can be established between many routers and Azure. Traffic is encrypted and tunneled over the Internet at the same cost per byte as any other traffic. For scenarios where more bandwidth or more security is desirable Azure offers a service called [Express Route](https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpngateways?toc=%2fazure%2fvirtual-network%2ftoc.json#ExpressRoute) which uses a private circuit between an on-premises network and Azure. It is more costly and difficult to establish but also more secure. 
 
 # Role Based Access Control for restricting access to Azure resources
 
@@ -99,15 +99,15 @@ Also known as RBAC, Role Based Access Control is a system that provides an ident
 
 ## Security Principals
 
-The first component in RBAC is a security principal. A security principal can be a user, group, service principal or managed identity. 
+The first component in RBAC is a security principal. A security principal can be a user, group, service principal, or managed identity. 
 
-![Different types of security principals](media/rbac-security-principal.png)
+![Figure 10-1 Different types of security principals](media/rbac-security-principal.png)
 
 * User - Any user who has an account in Azure Active Directory is a user. 
 
 * Group - A collection of users from Azure Active Directory. As a member of a group a user takes on the roles of that group in addition to their own.
 
-* Service principal - A security identity under which service or applications run. 
+* Service principal - A security identity under which services or applications run. 
 
 * Managed identity - An Azure Active Directory identity managed by Azure. Managed identities are typically used when developing cloud applications which manage the credentials for authenticating to Azure services.
 
@@ -117,9 +117,9 @@ The security principal can be applied to most any resource. This means that it i
 
 A security principal can take on many roles or, using a more sartorial analogy, wear many hats. Each role defines a series of permissions such as "Read messages from Azure Service Bus endpoint". The effective permissions of a security principal is the combination of all the permissions assigned to all the roles that security principal has. Azure has a large number of built in roles and users can define their own roles. 
 
-![RBAC role defintions](media/rbac-role-definition.png)
+![Figure 10-2 RBAC role definitions](media/rbac-role-definition.png)
 
-Built into Azure are also a number of high level roles Owner, Contributor, Reader and User Account Administrator. With the Owner role a security principal can access all resources and allocate permissions to others. A contributor has the same level of access to all resources but cannot allocate permissions. A Reader can only view existing Azure resources and a User Account Administrator is permitted to manage access to Azure resources. 
+Built into Azure are also a number of high level roles such as Owner, Contributor, Reader, and User Account Administrator. With the Owner role a security principal can access all resources and allocate permissions to others. A contributor has the same level of access to all resources but cannot allocate permissions. A Reader can only view existing Azure resources and a User Account Administrator is permitted to manage access to Azure resources. 
 
 More granular built-in roles such as [DNS Zone Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#dns-zone-contributor) have rights limited to a single service. Security principals can take on any number of roles. 
 
@@ -129,7 +129,7 @@ Roles can be applied to a restricted set of resources inside of Azure. For insta
 
 The scope can be as narrow as a single resource or it can be applied to an entire resource group, subscription or even management group. 
 
-When testing if a security principal has a certain permission the combination of role and scope are taken into account. This combination provides for very powerful authorization mechanism.
+When testing if a security principal has a certain permission the combination of role and scope are taken into account. This combination provides for a very powerful authorization mechanism.
 
 ## Deny
 
@@ -139,9 +139,9 @@ Deny rules take precedence over allow rules. Now representing the same "allow al
 
 ## Checking Access
 
-As you can imagine having a large number number of roles and scopes can make figuring out the effective permission of a service principal quite difficult. Piling deny rules on top of that only serves to increase the complexity. Fortunately, there is a permissions calculator which is able to show the effective permissions for any service principal. It is typically found under the IAM tab in the portal
+As you can imagine having a large number number of roles and scopes can make figuring out the effective permission of a service principal quite difficult. Piling deny rules on top of that only serves to increase the complexity. Fortunately, there is a permissions calculator which is able to show the effective permissions for any service principal. It is typically found under the IAM tab in the portal, as shown in Figure 10-3.
 
-![Permission calculator for an app service](media/check-rbac.png)
+![Figure 10-3 Permission calculator for an app service](media/check-rbac.png)
 
 # Securing Secrets
 
@@ -151,9 +151,9 @@ Many security [experts suggest](https://www.troyhunt.com/password-managers-dont-
 
 ## Azure Key Vault
 
-Azure Key Vault provides for a centralized location in which to store passwords for things like database as well as API keys and certificates. Once a secret is entered into the Vault it is never shown again and the commands to extract and view it are purposefully complicated. The information in the safe is protected using either software encryption or FIPS 140-2 Level 2 validates Hardware Security Modules. 
+Azure Key Vault provides for a centralized location in which to store passwords for things like databases, as well as API keys and certificates. Once a secret is entered into the Vault it is never shown again and the commands to extract and view it are purposefully complicated. The information in the safe is protected using either software encryption or FIPS 140-2 Level 2 validated Hardware Security Modules. 
 
-Access to the key vault is provided through Role Base Access Controls meaning that not just any user can access the information in the vault. Say a web application wishes to access the database connection string stored in Azure Key Vault. To gain access applications need to run using a service principal. Under this assumed role they can read the secrets from the safe. There are a number of different security settings which can further limit the access an application has to the vault so that it cannot update secrets only read them. 
+Access to the key vault is provided through Role Based Access Controls meaning that not just any user can access the information in the vault. Say a web application wishes to access the database connection string stored in Azure Key Vault. To gain access applications need to run using a service principal. Under this assumed role they can read the secrets from the safe. There are a number of different security settings which can further limit the access an application has to the vault so that it cannot update secrets only read them. 
 
 Access to the key vault can be monitored to ensure that only the expected applications are accessing the vault. The logs can be integrated back into Azure Monitor unlocking the ability to set up alerts when unexpected conditions are encountered. 
 
@@ -189,7 +189,7 @@ Finally this can be loaded into Kubernetes by running
 kubectl apply -f ./secret.yaml
 ```
 
-These secrets can then be mounted into volumes or exposed to container processes through environmental variables. The [12 factor app](https://12factor.net/) approach to building applications suggests using the lowest common denominator to transmit settings to an application. This is environmental variables as they are supported no matter the operating system or application.   
+These secrets can then be mounted into volumes or exposed to container processes through environmental variables. The [12 factor app](https://12factor.net/), covered in [chapter 1](introduction-to-cloud-native-applications.md), approach to building applications suggests using the lowest common denominator to transmit settings to an application. This is environmental variables as they are supported no matter the operating system or application.   
 
 As an alternative to using the built in Kubernetes secrets it is possible to access the secrets in Azure Key Vault from within Kubernetes. The simplest way to do this is to assign an RBAC role to the container looking to load secrets. The application can then use the Azure Key Vault APIs to access the secrets. Of course this approach requires modifications to code and doesn't follow the pattern of using environmental variables. Instead it is possible to inject values into a container through use of the [Azure Key Vault Injector](https://mrdevops.io/introducing-azure-key-vault-to-kubernetes-931f82364354). This approach is actually more secure than using the Kubernetes secrets directly as they can be accessed by users on the cluster.
 
@@ -200,7 +200,7 @@ Keeping data safe is important both when it is on disk and when it is transiting
 
 ## In transit
 
-To encrypt traffic on the network in Azure several approaches are possible. For Azure services access to them is typically done over connections which make use of Transport Layer Security(TLS). For instance all the connections to the Azure APIs requires TLS connections. Equally connections to endpoints in Azure storage can be restricted to work only over TLS encrypted connections.
+To encrypt traffic on the network in Azure several approaches are possible. For Azure services access to them is typically done over connections which make use of Transport Layer Security(TLS). For instance all the connections to the Azure APIs require TLS connections. Equally connections to endpoints in Azure storage can be restricted to work only over TLS encrypted connections.
 
 TLS is a pretty complicated protocol and simply knowing that the connection is using TLS isn't sufficient to ensure security. For instance TLS 1.0 is chronically insecure and TLS 1.1 is not much better. Even within the versions of TLS there are various settings which can make the connections easier to decrypt. The best course of action is to check and see if the server connection is using up to date and well configured protocols. 
 
@@ -208,7 +208,7 @@ This check can be done by an external service such as SSL labs' SSL Server Test.
 
 Even services like Azure SQL databases make use of TLS encryption to keep data hidden. The interesting part about encrypting the data in transit using TLS is that is is not possible for even Microsoft to listen in on the connection between computers running TLS. This should provide comfort for companies concerned that their data may be at risk from Microsoft proper or even a state actor with more resources than the standard attacker. 
 
-![SSL labs report showing a score of A for a Service Bus endpoint.](media/ssl-report.png)
+![Figure 10-4 SSL labs report showing a score of A for a Service Bus endpoint.](media/ssl-report.png)
 
 While this level of encryption is not going to be sufficient for all time it should inspire confidence that Azure TLS connections are, in fact, quite secure. Azure will continue to evolve its security standards as encryption improves. It is nice to know that there is somebody watching the security standards and updating Azure as they improve. 
 
@@ -230,23 +230,23 @@ Virtual machines use encrypted storage but it is possible to provide another lay
 
 Databases hosted on Azure SQL make use of a technology called [Transparent Data Encryption(TDE)](https://docs.microsoft.com/sql/relational-databases/security/encryption/transparent-data-encryption) to ensure that data remains encrypted. It is enabled by default on all newly created SQL databases but must be enabled manually for legacy databases. TDE performs real-time encryption and decryption of not just the database but also the backups and transaction logs. 
 
-The encryption parameters are stored in the `master` database and, on start up, is read into memory for the remaining operations. This does mean that the `master` database must remain unencrypted. The actual key is managed by Microsoft. However users with exacting security requirements may provide their own key in Key Vault in much the same way as is done for Azure Storage. The Key Vault provides for such services as key rotation and revocation. 
+The encryption parameters are stored in the `master` database and, on start up, are read into memory for the remaining operations. This does mean that the `master` database must remain unencrypted. The actual key is managed by Microsoft. However users with exacting security requirements may provide their own key in Key Vault in much the same way as is done for Azure Storage. The Key Vault provides for such services as key rotation and revocation. 
 
-The "Transparent" part of TDS comes from the fact that there are no client changes needed to make use of an encrypted database. While this approach provides for good security leaking the database password is enough for users to be able to decrypt the data. There is another approach which encrypts individual columns or tables in a database. [Always Encrypted](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-always-encrypted-azure-key-vault) ensures that at no point is the encrypted data never appears in plain text inside the database. 
+The "Transparent" part of TDS comes from the fact that there are no client changes needed to make use of an encrypted database. While this approach provides for good security, leaking the database password is enough for users to be able to decrypt the data. There is another approach which encrypts individual columns or tables in a database. [Always Encrypted](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-always-encrypted-azure-key-vault) ensures that at no point does the encrypted data appears in plain text inside the database. 
 
 Setting up this tier of encryption requires running through a wizard in SQL Server Management Studio to select the sort of encryption and where in KeyVault to store the associated keys. 
 
-![Selecting columns in a table to be encrypted using Always Encrypted](media/always-encrypted.png)
+![Figure 10-5 Selecting columns in a table to be encrypted using Always Encrypted](media/always-encrypted.png)
 
 Client applications which read information from these encrypted columns do need to make special allowances to read encrypted data. Connection strings need to be updated with `Column Encryption Setting=Enabled` and client credentials must be retrieved from the Key Vault. The SQL Server client must then be primed with the column encryption keys. Once that is done the remaining actions use the standard interfaces to SQL Client meaning that tools like Dapper and Entity Framework which are built on top of SQL Client will continue to work without changes. Always Encrypted may not yet be available for every SQL Server driver on every language.
 
-The combination of TDE and Always Encrypted both of which can be used with client specific keys ensures that even the most exacting encryption requirements are catered for. 
+The combination of TDE and Always Encrypted both of which can be used with client specific keys ensures that even the most exacting encryption requirements are supported. 
 
 ### Cosmos DB
 
-Cosmos DB is the newest, and coolest, database provided by Microsoft in Azure. It has been built from the ground up with security and cryptography in mind. AES-256bit encryption is standard for all Cosmos DB databases and cannot, in fact, be disabled. Coupled with the TLS 1.2 required to communicate over HTTP with Cosmos DB the entire storage solution is encrypted.
+Cosmos DB is the newest, and coolest, database provided by Microsoft in Azure. It has been built from the ground up with security and cryptography in mind. AES-256bit encryption is standard for all Cosmos DB databases and cannot, in fact, be disabled. Coupled with the TLS 1.2 requirement for communication, the entire storage solution is encrypted.
 
-![The flow of data encryption inside of Cosmos DB](media/cosmos-encryption.png)
+![Figure 10-6 The flow of data encryption inside of Cosmos DB](media/cosmos-encryption.png)
 
 While Cosmos DB does not provide for supplying customer encryption keys there has been significant work done by the team to ensure that it remains PCI-DSS compliant without that. Cosmos also does not yet support any sort of single column encryption similar to Azure SQL's Always Encrypted.
 

@@ -8,7 +8,7 @@ ms.date: 06/30/2019
 
 No other cloud provider has as mature of a cloud application monitoring solution as that found in Azure. Azure Monitor is an umbrella name for a collection of tools designed to provide visibility into the state of your system, insights into any problems and optimization of your application. 
 
-![Azure Monitor, a collection to tools to facilitate insight into how a cloud native application is functioning.](media/azure_monitor.png)
+![Figure 8-3 Azure Monitor, a collection to tools to facilitate insight into how a cloud native application is functioning.](media/azure_monitor.png)
 
 
 ## Gathering Logs and Metrics 
@@ -17,11 +17,11 @@ The first step in any monitoring solution is to gather as much data as possible.
 
 Application level metrics and events are not possible to instrument automatically because they are local to the application being deployed. In order to gather these metrics there are [SDKs and APIs available](https://docs.microsoft.com/en-us/azure/azure-monitor/app/api-custom-events-metrics) to directly report such information as when a customer signs up or completes an order. Exceptions can also be captured and reported back up into Azure Monitor via Application Insights. The SDKs support most every language found in Cloud Native Applications including Go, Python, JavaScript and the .NET languages. 
 
-The ultimate goal of gathering information about the state of your application is to ensure that your end users have a good experience. What better way to tell if users are experiencing issues than performing [outside-in web tests](https://docs.microsoft.com/en-us/azure/azure-monitor/app/monitor-web-app-availability)? These test can be as simple as pinging your website from locations around the world or as involved as having agents log into the site and perform actions.
+The ultimate goal of gathering information about the state of your application is to ensure that your end users have a good experience. What better way to tell if users are experiencing issues than performing [outside-in web tests](https://docs.microsoft.com/en-us/azure/azure-monitor/app/monitor-web-app-availability)? These tests can be as simple as pinging your website from locations around the world or as involved as having agents log into the site and perform actions.
 
 ## Reporting data
 
-Once the data is gathered it can be manipulated, summarized and plotted into charts which allow user to instantly see when there are problems. These charts can be gathered into dashboards or into Workbooks, a multi-page report designed to tell a story about some aspect of the system.
+Once the data is gathered it can be manipulated, summarized and plotted into charts which allow users to instantly see when there are problems. These charts can be gathered into dashboards or into Workbooks, a multi-page report designed to tell a story about some aspect of the system.
 
 Of course, no modern application would be complete without a little bit of Artificial Intelligence or Machine Learning. To this end data [can be passed](https://www.youtube.com/watch?v=Cuza-I1g9tw) to the various Machine Learning tools in Azure to allow you to extract trends and information which would otherwise be hidden. 
 
@@ -35,7 +35,7 @@ StormEvents
 | render piechart 
 ```
 
-![The result of the Application Insights Query](media/application_insights_example.png)
+![Figure 8-0 The result of the Application Insights Query](media/application_insights_example.png)
 
 There is a [playground for experimenting with Kusto](https://dataexplorer.azure.com/clusters/help/databases/Samples) queries which is a fantastic place to spend an hour or two. Reading [sample queries](https://docs.microsoft.com/en-us/azure/kusto/query/samples) can also be instructive.
 
@@ -43,16 +43,16 @@ There is a [playground for experimenting with Kusto](https://dataexplorer.azure.
 
 There are several different dashboarding technologies which may be used to surface the information from Azure Monitor. Perhaps the simplest is to just run queries in Application Insights and [plot the data into a chart](https://docs.microsoft.com/en-us/azure/azure-monitor/learn/tutorial-app-dashboards). 
 
-![An example of Application Insights charts embedded in the main Azure Dashboard](media/azure_dashboard.png)
+![Figure 8-1 An example of Application Insights charts embedded in the main Azure Dashboard](media/azure_dashboard.png)
 
 
-These charts can then be embedded in the Azure portal proper through use of the dashboard feature. For users with more exacting requirements such as being able to drill down into several tiers of data Azure Monitor data is available to [PowerBI](https://powerbi.microsoft.com/en-us/). PowerBI is an industry-leading, enterprise class business intelligence which can aggregate data from many different data sources.
+These charts can then be embedded in the Azure portal proper through use of the dashboard feature. For users with more exacting requirements such as being able to drill down into several tiers of data Azure Monitor data is available to [PowerBI](https://powerbi.microsoft.com/en-us/). PowerBI is an industry-leading, enterprise class, business intelligence tool which can aggregate data from many different data sources.
 
-![An example Power BI dashboards ](media/powerbidashboard.png)
+![Figure 8-2 An example Power BI dashboards ](media/powerbidashboard.png)
 
 ## Alerts
 
-Sometimes simply dashboarding data is insufficient. If nobody is awake to watch the dashboards then it can still be many hours before a problem is addressed. To this end Azure Monitor also provides a top notch [alerting solution](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-overview). Alerts can be triggered by a wide range of conditions including 
+Sometimes simply dashboarding data is insufficient. If nobody is awake to watch the dashboards then it can still be many hours before a problem is addressed, or even detected. To this end Azure Monitor also provides a top notch [alerting solution](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/alerts-overview). Alerts can be triggered by a wide range of conditions including 
 
 * Metric values
 * Log search queries

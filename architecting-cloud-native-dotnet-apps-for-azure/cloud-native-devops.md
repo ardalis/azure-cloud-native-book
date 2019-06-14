@@ -13,13 +13,13 @@ Cloud Native Applications are not immune to that same dichotomy. They have clear
 
 Years ago it was not uncommon for the process of moving an application from development to production to take a month, or even more. Companies released software on a 6-month or even every year cadence. One need look no further than Microsoft Windows to get an idea for the cadence of releases which were acceptable before the ever-green days of Windows 10. 5 years passed between Windows XP and Vista, a further 3 between Vista and Windows 7.
 
-It is now fairly well established that being able to release software rapidly give fast-moving companies a huge market advantage over their more sloth-like competitors. It is for that reason that major updates to Windows 10 are now approximately every 6 months. 
+It is now fairly well established that being able to release software rapidly gives fast-moving companies a huge market advantage over their more sloth-like competitors. It is for that reason that major updates to Windows 10 are now approximately every 6 months. 
 
 The patterns and practices which enable faster, more reliable releases to deliver value to the business are collectively known as DevOps. They consist of a wide range of ideas spanning the entire software development lifecycle from specifying an application all the way up to delivering and operating that application. 
 
-DevOps emerged before Microservices and it is likely that the movement towards smaller, more fit to purpose services would have not been possible without DevOps to facilitate releasing and operating not just one but many applications in production. 
+DevOps emerged before Microservices and it is likely that the movement towards smaller, more fit to purpose services would not have been possible without DevOps to facilitate releasing and operating not just one but many applications in production. 
 
-![Search trends show that the growth in microservices does not commence until after DevOps is a fairly well established idea.](media/microservices-vs-devops.png)
+![Figure 11-0 Search trends show that the growth in microservices does not commence until after DevOps is a fairly well established idea.](media/microservices-vs-devops.png)
 
 Through good DevOps practices it is possible to realize the advantages of Cloud Native Applications without suffocating under a mountain of work actually operating the applications. 
 
@@ -27,48 +27,48 @@ There is no golden hammer when it comes to DevOps, nobody can sell a complete an
 
 # Azure DevOps
 
-Azure DevOps has a long pedigree. It can trace its roots back to when Team Foundation Server first move online and through the various name changes: Visual Studio Online and Visual Studio Team Services. Through the years, however, it has become far more than its predecessors. 
+Azure DevOps has a long pedigree. It can trace its roots back to when Team Foundation Server first moved online and through the various name changes: Visual Studio Online and Visual Studio Team Services. Through the years, however, it has become far more than its predecessors. 
 
 Azure DevOps is divided into five major components: Boards, Repos, Pipelines, Test Plans and Artifacts. 
 
-![The five major areas of Azure DevOps](media/devops-components.png)
+![Figure 11-1 The five major areas of Azure DevOps](media/devops-components.png)
 
 **Azure Boards** - Provides an issue and work item tracking tool which strives to allow users to pick the workflows which work best for them. It comes with a number of pre-configured templates including ones to support SCRUM and Kanban styles of development. 
 
-**Azure Repos** - Source code management which supports the venerable Team Foundation Version Control (TFVC) as well as the industry favorite git. Pull requests provide a way to enable social coding by fostring discussion of changes as they are made. 
+**Azure Repos** - Source code management which supports the venerable Team Foundation Version Control (TFVC) as well as the industry favorite git. Pull requests provide a way to enable social coding by fostering discussion of changes as they are made. 
 
-**Azure Pipelines** - A build and relese management system which supports tight integration with Azure. Builds can be run on a variety of platforms from Windows to Linux to MacOS. Build agents may be provisioned in the cloud or on premise. 
+**Azure Pipelines** - A build and release management system which supports tight integration with Azure. Builds can be run on a variety of platforms from Windows to Linux to MacOS. Build agents may be provisioned in the cloud or on premise. 
 
-**Azure Test Plans** - No QA person will be left behind with the test management and exploratory testing support offered by the Test Plans Features.
+**Azure Test Plans** - No QA person will be left behind with the test management and exploratory testing support offered by the Test Plans feature.
 
 **Azure Artifacts** - An artifact feed which allows companies to create their own, internal, versions of nuget, npm and others. It serves a double purpose of acting as a cache of upstream packages in the event of failure of a centralized repository.
 
-The top-level container in Azure DevOps is known as a Project. The components can be turned on and off for any project. If users want to manage their source code in GitHub but still take advantage of Azure Pipelines then that's perfectly possible. In fact, many open source projects have taken advantages of the [free builds](https://azure.microsoft.com/en-ca/blog/announcing-azure-pipelines-with-unlimited-ci-cd-minutes-for-open-source/) offered by Azure DevOps while keeping their source code on GitHub. Some significant open source project such as [Visual Studio Code](https://code.visualstudio.com/), [yarn](https://yarnpkg.com/en/), [gulp](https://gulpjs.com/) and [NumPy](https://www.numpy.org/) have made the transition. 
+The top-level organizational unit in Azure DevOps is known as a Project. Within each project the various components, such as Azure Artifacts, can be turned on and off. If users want to manage their source code in GitHub but still take advantage of Azure Pipelines then that's perfectly possible. In fact, many open source projects levarage the [free builds](https://azure.microsoft.com/en-ca/blog/announcing-azure-pipelines-with-unlimited-ci-cd-minutes-for-open-source/) offered by Azure DevOps while keeping their source code on GitHub. Some significant open source projects such as [Visual Studio Code](https://code.visualstudio.com/), [yarn](https://yarnpkg.com/en/), [gulp](https://gulpjs.com/), and [NumPy](https://www.numpy.org/) have made the transition. 
 
 Each of these components provides some advantages for Cloud Native Applications but the three most useful are the source control, boards and pipelines.  
 
 ## Source Control
 
-Organize the code for a Cloud Native Application can be somewhat challenging. Instead of a single giant application the Cloud Native Applications tend to be made up of a web of smaller applications which talk with one another. As with all things in computing the best arrangement of code remains an open question. There are examples of successful applications using a variety of layouts but two variants seem to have the most popularity. 
+Organizing the code for a Cloud Native Application can be somewhat challenging. Instead of a single giant application the Cloud Native Applications tend to be made up of a web of smaller applications which talk with one another. As with all things in computing the best arrangement of code remains an open question. There are examples of successful applications using a variety of layouts but two variants seem to have the most popularity. 
 
-Before getting down into the actual source control itself it is probably worth deciding on how many projects are appropriate. Within a single project is support for multiple repositories, and build pipelines. Board are a little more complicated but there too the tasks can easily be assigned to multiple teams within a single project. It is certainly possible to support hundreds, even thousands of developers out of a single Azure DevOps project. Doing so is likely the best approach as it provides a single place for all developer to work out of and reduces the confusion of finding that one application when developers are unsure of even which project in which it resides. 
+Before getting down into the actual source control itself it is probably worth deciding on how many projects are appropriate. Within a single project there is support for multiple repositories, and build pipelines. Board are a little more complicated but there too the tasks can easily be assigned to multiple teams within a single project. It is certainly possible to support hundreds, even thousands of developers out of a single Azure DevOps project. Doing so is likely the best approach as it provides a single place for all developer to work out of and reduces the confusion of finding that one application when developers are unsure in which project in which it resides. 
 
-With the single project argument settled the question moves to how to split up the code for the microservices. 
+Splitting up code for microservices within the Azure Devop project can be slightly more challenging. 
 
-![](media/single-repository-vs-multiple.png)
+![Figure 11-2 Single vs. Multiple Repositories](media/single-repository-vs-multiple.png)
 
 ### Repository per Microservice
 
 At first glance this seems like the most logical approach to splitting up the source code for microservices. Each repository can contain the code needed to build the one microservice. The advantages to this approach are readily visible: 
 
-1. Instructions for building and maintaining the application can be added to a README file at the root of each repository. When flipping through the repositories it will be easy to find these instruction reducing spin up time for developers. 
+1. Instructions for building and maintaining the application can be added to a README file at the root of each repository. When flipping through the repositories it will be easy to find these instructions reducing spin up time for developers. 
 2. Every service is located in a logical place, easily found by knowing the name of the service. 
 3. Builds can easily be set up such that they're only triggered when a change is made to the owning repository.
 4. The number of changes coming into a repository is limited to the small number of developers working on the project. 
 5. Security is easy to set up by restricting the repositories to which developers have read and write permissions.
 6. Repository level settings can be changed by the owning team with a minimum of discussion with others
 
-One of the key ideas behind microservices is that services should be siloed and separated from each other. This idea is reflected by the isolation of microservice data to a database separate and autonomous from the rest of the services. It makes a great deal of sense to carry this idea all the way through to the source code.
+One of the key ideas behind microservices is that services should be siloed and separated from each other. When using Domain Driven Design to decide on the boundaries for services the services act as transactional boundaries. Database updates should not span multiple services. This collection of related data is referred to as a bounded context.  This idea is reflected by the isolation of microservice data to a database separate and autonomous from the rest of the services. It makes a great deal of sense to carry this idea all the way through to the source code.
 
 However, this approach is not without its issues. One of the more gnarly development problems of our time is managing dependencies. Consider the number of files which make up the average `node_modules` directory. A fresh install of something like `create-react-app` is likely to bring with it thousands of packages. The question of how to manage these dependencies is a difficult one. 
 
@@ -76,7 +76,7 @@ If a dependency is updated then downstream packages must also update this depend
 
 There are libraries which are depended upon by a wide variety of projects. By dividing the microservices up with one in each repository the internal dependencies can best be resolved by using the internal repository, Azure Artifacts. Builds for libraries will push their latest versions up into Azure Artifacts for internal consumption. Downstream project must still be manually updated to take a dependency on the newly updated packages. 
 
-Another disadvantage presents itself when moving code between services. Although it would be nice to believe that the first division of an application into microservices is 100% correct the reality is that rarely are we so prescient as to make no service division mistakes. Thus functionality and the code which drives it will need to move from service to service: repository to repository. When leaping from one repository to another the code loses its history. There are many cases, especially in the even of an audit, where having full history on a piece of code is invaluable. 
+Another disadvantage presents itself when moving code between services. Although it would be nice to believe that the first division of an application into microservices is 100% correct the reality is that rarely are we so prescient as to make no service division mistakes. Thus functionality and the code which drives it will need to move from service to service: repository to repository. When leaping from one repository to another the code loses its history. There are many cases, especially in the event of an audit, where having full history on a piece of code is invaluable. 
 
 The final, and perhaps most important disadvantage is coordinating changes. In a true microservices application there should be no deployment dependencies between services. It should be possible to deploy services A, B and C in any order as they have loose coupling. In reality, however, there are times when it is desirable to make a change which crosses multiple repositories at the same time. Some examples include updating a library to close a security hole or changing a communication protocol used by all services. 
 
@@ -108,7 +108,7 @@ In the end either solution can be used to house the source code for microservice
 
 Regardless of the single vs. multiple repository debate each service will have its own directory. One of the best optimizations to allow developers to cross between projects quickly is to maintain a standard directory structure. 
 
-![A standard directory structure for both the email and login services](media/dir-struct.png)
+![Figure 11-3 A standard directory structure for both the email and login services](media/dir-struct.png)
 
 Whenever a new project is created a template which puts in place the correct structure should be used. This template can also include such useful items as a skeleton README file and an `azure-pipelines.yml`.  In any microservice architecture a high degree of variance between projects makes bulk operations against the services more difficult. 
 
@@ -116,27 +116,27 @@ There are many tools which can provide templating for an entire directory, conta
 
 ## Task Management
 
-Managing tasks in any project can be difficult. Up front there are countless questions to be answered about the sort of workflows to set up for to ensure optimal developer productivity. 
+Managing tasks in any project can be difficult. Up front there are countless questions to be answered about the sort of workflows to set up to ensure optimal developer productivity. 
 
-Cloud Native Applications tend to be smaller than traditional software product or at least they are divided into smaller services. Tracking of issue or task related to these services remains as important as with any other software project. Nobody wants to loose track of some work item or explain to a customer that their issue wasn't properly logged. Boards are configured at the project level but within each project areas can be defined. These allow breaking down issues across several components. The advantage to keeping all the work for the entire application in one place is that it is easy to move work items from one team to another as they are understood better. 
+Cloud Native Applications tend to be smaller than traditional software products or at least they are divided into smaller services. Tracking of issues or tasks related to these services remains as important as with any other software project. Nobody wants to lose track of some work item or explain to a customer that their issue wasn't properly logged. Boards are configured at the project level but within each project areas can be defined. These allow breaking down issues across several components. The advantage to keeping all the work for the entire application in one place is that it is easy to move work items from one team to another as they are understood better. 
 
-Azure DevOps comes with a number of popular templates pre-configured. In the most basic configuration all that is needed it to know what is in the backlog, what people are working on and what's done. It is important to have this visibility into the process of building software so that work can be prioritized and completed tasks reported to the customer. Of course, very few software projects stick to a process as simple as `to do`, `doing` and `done`. It doesn't take long for people to start adding steps like `QA` or `Detailed Specification` to the process. 
+Azure DevOps comes with a number of popular templates pre-configured. In the most basic configuration all that is needed to know what is in the backlog, what people are working on and what's done. It is important to have this visibility into the process of building software so that work can be prioritized and completed tasks reported to the customer. Of course, very few software projects stick to a process as simple as `to do`, `doing` and `done`. It doesn't take long for people to start adding steps like `QA` or `Detailed Specification` to the process. 
 
-One of the more important parts of Agile methodologies is self-introspection at regular intervals. These reviews are meant to provide insight into what problems the team is facing and how they can be improved. Frequently, this means changing the flow of issues and features through the development process. So it is perfectly health to expand the layouts of the boards with additional stages.
+One of the more important parts of Agile methodologies is self-introspection at regular intervals. These reviews are meant to provide insight into what problems the team is facing and how they can be improved. Frequently, this means changing the flow of issues and features through the development process. So it is perfectly healthy to expand the layouts of the boards with additional stages.
 
 The stages in the boards are not the only organizational tool. Depending on the configuration of the board there is a hierarchy of work items. The most granular item which can appear on a board is a task. Out of the box a task contains fields for a title, description, a priority, an estimate of the amount of work remaining and the ability to link to other work items or development items (branches, commits, pull requests, builds and so forth). Work items can be classified into different areas of the application and different iterations (sprints) to make finding them easier.
 
-![An example task in Azure DevOps](media/task-details.png)
+![Figure 11-4 An example task in Azure DevOps](media/task-details.png)
 
 The description field supports the normal styles you'd expect (bold, italic underscore and strike through) and also the ability to insert images. This makes it a very powerful tool for use when specifying work or bugs.
 
 Tasks can be rolled up into features, which define a larger unit of work. Features, in turn, can be [rolled up into epics](https://docs.microsoft.com/en-us/azure/devops/boards/backlogs/define-features-epics?view=azure-devops). Classifying tasks in this hierarchy makes it much easier to understand how close a large feature is to rolling out.
 
-![Work item types configured by default in the Basic process template](media/board-issue-types.png)
+![Figure 11-5 Work item types configured by default in the Basic process template](media/board-issue-types.png)
 
 There is a variety of different views into the the issues in Boards. Items which are not yet scheduled appear in the backlog. From there they an be assigned to a sprint. A sprint is a time box during which it is expected some quanity of work will be completed. This work can include tasks but also the resolution of tickets. Once there the entire sprint can be managed from the Sprint board section. This view shows how work is progressing and includes a burndown chart to give an ever updating estimate of if the sprint will be successful.
 
-![A board with a sprint defined](media/sprint-board.png)
+![Figure 11-6 A board with a sprint defined](media/sprint-board.png)
 
 By now it should be apparent that there is a great deal of power in the Boards in Azure DevOps. For developers there are easy views of what is being worked on. For project managers views into upcoming work as well as an overview of existing work. For managers there are plenty of reports about resourcing and capacity. Unfortunately, there is nothing magical about Cloud Native Applications which eliminate the need to track work. But if you have to track work there are few places where the experience is better than in Azure DevOps.
 
@@ -144,21 +144,21 @@ By now it should be apparent that there is a great deal of power in the Boards i
 
 Almost no change in the software development lifecycle has been so revolutionary as the advent of continuous integration and continuous delivery. Building and running automated tests against the source code of a project as soon as a change is checked in catches mistakes early. Prior to the advent of continuous integration builds it would not be uncommon to pull code from the repository and find that it did not pass tests or couldn't even be built. This resulted in a lot of tracking down the source of the breakage. 
 
-Traditionally shipping software to the production environment required extensive documentation and a list of steps. Each one of these steps needs to be manually completed in a very error prone process. 
+Traditionally shipping software to the production environment required extensive documentation and a list of steps. Each one of these steps needed to be manually completed in a very error prone process. 
 
-![A checklist](media/checklist.png)
+![Figure 11-7 A checklist](media/checklist.png)
 
 The sister of continuous integration is continuous delivery in which the freshly built packages are deployed to an environment. The manual process cannot scale to match the speed of development so automation becomes more important. Checklists are replaced by scripts which can perform the same tasks faster and more accurately than any human. 
 
 The environment to which continuous delivery delivers might be a test environment or, as is being done by many major technology companies, it could be the production environment. The latter requires an investment in high quality tests which can give confidence that a change is not going to break production for users. In the same way that continuous integration caught issues in the code early continuous delivery catches issues in the deployment process early. 
 
-The importance of automating the build and delivery process is accentuated by Cloud Native Applications. Deployments happen more frequently and to more environments so manually deploying boarders on impossible. 
+The importance of automating the build and delivery process is accentuated by Cloud Native Applications. Deployments happen more frequently and to more environments so manually deploying borders on impossible. 
 
 ### Azure Builds
 
 Azure DevOps provides a set of tools to make continuous integration and deployment easier than ever. These tools are located under Azure Pipelines. The first of them is Azure Builds. This is a tool for running YAML based build definitions at scale. Users can either bring their own build machines (great for if the build requires a meticulously set up environment) or use a machine from a constantly refreshed pool of Azure hosted virtual machines.  These hosted build agents come pre-installed with a wide range of development tools for not just .NET development but for everything from Java to Python to iPhone development. 
 
-DevOps includes a wide range of out of the box build definitions which can be customized for any build. The build definitions are defined in a file called `azure-pipelines.yml` and checked into the repository so they can be versioned along with the source code. This makes it much easier to make changes to the build pipeline in a branch as the changes can be check into just that branch. An example `azure-pipelines.yml` for building an ASP.NET web application on full framework looks like
+DevOps includes a wide range of out of the box build definitions which can be customized for any build. The build definitions are defined in a file called `azure-pipelines.yml` and checked into the repository so they can be versioned along with the source code. This makes it much easier to make changes to the build pipeline in a branch as the changes can be checked into just that branch. An example `azure-pipelines.yml` for building an ASP.NET web application on full framework is show in Figure 11-8.
 
 ```
 name: $(rev:r)
@@ -219,6 +219,7 @@ steps:
     ArtifactName: '$(artifactName)'
   condition: succeededOrFailed()
 ```
+***Figure 11-8*** - A sample azure-pipelines.yml
 
 This build definition uses a number of built in tasks which make creating builds as simple as building a Lego set (simpler than the giant Millennium Falcon). For instance the NuGet task restores NuGet packages while the VSBuild task calls out to the Visual Studio build tools to perform the actual compilation. There are hundreds of different tasks available in Azure DevOps with thousands more which are community maintained. It is likely that no matter what build tasks you're looking to run somebody has built one already.
 
@@ -230,7 +231,7 @@ The end result of a build is a collection of files known as build artifacts. The
 
 Builds take care of compiling the software into a shippable package but the artifacts still need to be pushed out to a testing environment to complete continuous delivery. For this Azure DevOps uses a separate tool called Releases. Releases make use of the same library of tasks which were available to the Build but introduce a concept of "stages". A stage is an isolated environment into which the package is installed. For instance a product might make use of a develop, a QA and a production environment. Code is continuously delivered into the development environment where automated tests can be run against it. Once those tests pass the release moves onto the QA environment for manual testing. Finally the code is pushed to production where it is visible to everybody. 
 
-![An example release pipeline with Develop, QA and Production phases](media/release-pipeline.png)
+![Figure 11-9 An example release pipeline with Develop, QA and Production phases](media/release-pipeline.png)
 
 Each stage in the build can be automatically trigged by the completion of the previous phase. In many cases, however, this isn't desirable. Moving code into production might require approval from somebody. Releases supports this by allowing approvers at each step of the release pipeline. Rules can be set up such that a specific person or group of people must sign off on a release before it makes it to production. These gates allow for manual quality checks and also for compliance with any regulatory requirements pertaining to controls on what goes into production. 
 
@@ -240,7 +241,7 @@ There is no cost to configuring many build pipelines so it is advantageous to ha
 
 ### Versioning Releases
 
-One drawback to using the Releses functionality is that it cannot be defined in a checked in `azure-pipelines.yml` file. There are many reason you might want to do that from having per-branch release definitions to including a release skeleton in your project template. Fortunately work is ongoing to shift some of the stages support into the Build component. This will be known as multi-stage build and the first version are available right now!
+One drawback to using the Releses functionality is that it cannot be defined in a checked in `azure-pipelines.yml` file. There are many reasons you might want to do that from having per-branch release definitions to including a release skeleton in your project template. Fortunately work is ongoing to shift some of the stages support into the Build component. This will be known as multi-stage build and the first version are available [right now](https://devblogs.microsoft.com/devops/whats-new-with-azure-pipelines/)!
 
 
 
