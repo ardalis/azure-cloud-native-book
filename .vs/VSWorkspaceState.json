@@ -1,11 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\architecting-cloud-native-dotnet-apps-for-azure",
-    "\\architecting-cloud-native-dotnet-apps-for-azure\\implementing-a-cloud-native-app",
-    "\\architecting-cloud-native-dotnet-apps-for-azure\\introduction-to-cloud-native-applications",
-    "\\architecting-cloud-native-dotnet-apps-for-azure\\introduction-to-cloud-native-applications\\media"
+    "\\architecting-cloud-native-dotnet-apps-for-azure"
   ],
-  "SelectedNode": "\\CheatSheet.txt",
+  "SelectedNode": "\\architecting-cloud-native-dotnet-apps-for-azure\\cloud-native-devops.md",
   "PreviewInSolutionExplorer": false
 }
