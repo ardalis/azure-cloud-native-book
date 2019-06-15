@@ -10,4 +10,4 @@ ACI for testing single containers.
 
 >[!div class="step-by-step"]
 >[Previous](deploying-containers-in-azure.md)
->[Next](implementing-a-cloud-native-app.md)
+<!-->[Next](implementing-a-cloud-native-app.md)-->

@@ -69,6 +69,10 @@
     items:
     - name: Authentication and Authorization in Cloud Native Apps
       href: auth-in-cloud-native.md
+    - name: Azure Active Directory
+      href: azure-active-directory.md
+    - name: Identity Server
+      href: identity-server.md
   - name: Security
     href: security.md
     items:
