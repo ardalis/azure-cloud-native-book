@@ -159,4 +159,4 @@ Next, we visit data storage in the Azure cloud.
 
 >[!div class="step-by-step"]
 >[Previous](distributed-data.md)
-<!-->[Next](azure-data-storage.md)-->
+<[Next](azure-data-storage.md)

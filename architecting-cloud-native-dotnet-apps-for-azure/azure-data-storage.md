@@ -108,50 +108,90 @@ It's available in two deployment options, Single Server and Hyperscale (Citus), 
 
 ## Cosmos DB
 
-Blah
+Azure Cosmos DB is a fully-managed, globally distributed NoSQL database service that's designed to provide low latency, elastic scalability, managed data consistency and high availability. In short, if your application needs guaranteed fast response time anywhere in the world, if it's required to be always online, and needs unlimited and elastic scalability of throughput and storage, Cosmos DB is a great choice. Figure 5-13 provides a high-level overview of the features and capabilities of Cosmos DB.
+
+![Cosmos DB overview](media/cosmos-db-overview.png)
+
+**Figure 5-13**: Overview of Cosmos DB
+
+As you can see in the figure above, Cosmos DB is a robust and highly versatile database service with many built-in cloud-native capabilities. In this section, we’ll take a closer look.
+
+### Global Support
+
+Out-of-the-box, you can globally distribute your Cosmos databases across any and all 44 Azure regions, thus placing data close to your users, improving response time and reducing latency. You can add or remove a region at any time without pausing or redeploying your application. Under the hood, Cosmos DB transparently replicates the data to all configured regions.
+
+But there’s more. Cosmos DB supports active-active clustering at the global level, enabling you to configure any or all your database region to support both writes and reads.
+
+Cosmos’ Multi-Master protocol enables:
+
+-   Unlimited elastic write and read scalability
+
+-   99.999% read and write availability all around the world
+
+-   Guaranteed reads and writes served in less than 10 milliseconds at the 99th
+    percentile
+
+>    
+
+Under the hood, Cosmos DB handles data replication between regions with consistency level guarantees and financially backed service level agreements.
+
+Then, using the Cosmos DB Multi-Homing APIs, your application becomes aware of the nearest Azure region and can automatically send requests to it. This nearest region is identified without any configuration changes. Should a region become unavailable, Cosmos DB supports automatic failover and the Multi-Homing feature can automatically route your request to the next nearest available region.
+
+### Multi-Model Support
+
+Cosmos DB is a *multi-model data platform* enabling you to interact with data using a number of supported NoSQL models, including documents, key-value pairs, wide-column and graph representations. Under the hood, data is stored as simple structs made up of primitive types including strings, bools and numbers. Upon request, the database engine translates data into the representation of the API that you have selected. Based upon the requirements of your service, you can select from a proprietary SQL-based API or any of the compatibility APIs shown in Figure 5-14 below.
+
+![Cosmos DB providers](media/cosmos-db-providers.png)
+
+**Figure 5-14**: Cosmos DB Providers
+
+In Brownfield application scenarios, development teams can often migrate existing Mongo, Gremlin or Cassandra databases into Cosmos DB with minimal changes to the data or existing application code. For Greenfield scenarios, development teams can choose the data model that best meets their requirements and preferences, including fully-supported open-source options for the MongoDB, Cassandra and Gremlin platforms.
+
+Note in the figure above how Cosmos DB supports Table Storage. Both Cosmos DB and Azure Table Storage share the same underlying table model and expose many of the same table operations. However, the Cosmos DB Table API provides many premium enhancements not available in the Azure Storage API, as shown below in Figure 5-15.
+
+![Azure table API](media/azure-table-api.png)
+
+**Figure 5-15**: Azure Table API
+
+Applications written for Azure Table storage can migrate to Azure Cosmos DB by using the Table API with no code changes.
 
 ### Consistency Models
 
-Blah
+In the Relational vs. NoSQL section, we discussed the subject of data consistency earlier. It refers to the integrity of your data. Distributed databases that rely on replication for high availability, low latency, or both, must make a fundamental tradeoff between read consistency, availability and latency.
 
-### Open-Source Support
+Most commercially available distributed databases allow developers to choose between two extreme consistency models: Strong consistency and eventual consistency. *Strong consistency* is the gold standard of data programmability. It guarantees that a query result will always return the most current data, even if it the system must incur latency waiting for an update to replicate across all database copies. On the other hand, a system configured for *eventual consistency* will return data immediately, even if that data is not most current copy, offering higher availability, greater scale and increased performance.
 
-MongoDB, Casandra, GraphAPI
+Azure Cosmos DB approaches data consistency with five well-defined consistency models that offer a spectrum of consistency options between the two extremes as shown below in Figure 5-16. Developers can use these options to make precise choices and granular tradeoffs with respect to high availability and performance.
 
-### Providers
+![Cosmos DB consistency levels](media/cosmos-db-consistency-levels.png)
 
-Blah
+**Figure 5-16**: Cosmos DB Consistency Levels
 
-### Availability
-
-Blah
+As you can see in the figure above, you have a range of options in determining the level of consistency your application can tolerate. The models are well-defined, intuitive and can be used for specific real-world scenarios. Each model provides availability and performance tradeoffs and is backed by the SLAs. 
 
 ### Partitioning
 
-Blah
+Azure Cosmos DB uses automatic, built-in partitioning to scale individual containers in a database to meet the performance needs of your application. 
 
-## Azure Storage Services
+You manage data in Cosmos DB data by creating databases, containers and items, as depicted in Figure 5-17 below.
 
-<https://azure.microsoft.com/en-us/product-categories/databases/>
+![Cosmos DB entities](media/cosmos-db-entities.png)
 
-Blah
+**Figure 5-17**: Hierarchy of Cosmos DB Entities
 
-### Azure Blobs
+As you can see in the figure above, you start by creating a Cosmos DB database inside an Azure account. That database becomes the unit of management for a set of containers. A container is a schema-agnostic grouping of items that can be expressed as a collection, table or graph based on your selected API provider (discussed in the prior section). Items are the data that you add to the container and can be represented as documents, rows, nodes or edges. By default, all items that you add to a container are automatically indexed without requiring explicit index or schema management.
 
-Blah
+To partition the container, items are divided into distinct subsets called logical partitions. Logical partitions are formed based on the value of a partition key that is associated with each item in a container. All items in a logical partition have the same partition key value as shown below in Figure 5-18.
 
-### Azure Tables
+![Cosmos partitioning commands](media/cosmos-db-partitioning.png)
 
-Blah
+**Figure 5-18**: Cosmos DB Partitioning Mechanics
 
-Comparison of Cosmos Table vs Azure Table Provider
+As you can see in the figure above, each item includes a partition key of either ‘city’ or ‘airport’. Note how each city code is assigned to a logical partition in the container on the left-side.
 
-<https://docs.microsoft.com/en-us/azure/cosmos-db/table-support>
+Under the hood, DB transparently and automatically manages the placement of logical partitions on physical partitions to efficiently satisfy the scalability and performance needs of the container. As the throughput and storage requirements of an application increase, Azure Cosmos DB moves logical partitions to automatically spread the load across a greater number of servers. These redistribution operations are managed by the Cosmos DB and are performed without any interruption or downtime.
 
-### Azure Files
-
-Blah
-
+In addition to a partition key that determines the item’s logical partition, each item in a container has an item ID (unique within a logical partition). Combining the partition key and the item ID creates the item's index, which uniquely identifies the item.
 
 ## Additional resources
 >[!div class="step-by-step"]
