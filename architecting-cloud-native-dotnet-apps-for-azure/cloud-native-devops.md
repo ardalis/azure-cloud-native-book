@@ -25,7 +25,7 @@ Through good DevOps practices it is possible to realize the advantages of Cloud 
 
 There is no golden hammer when it comes to DevOps, nobody can sell a complete and all encompassing solution to releasing and operating high quality applications. This is because each application is wildly different from all others. However, there are tools which can make DevOps a far less daunting proposition. One of these is known as Azure DevOps.
 
-# Azure DevOps
+## Azure DevOps
 
 Azure DevOps has a long pedigree. It can trace its roots back to when Team Foundation Server first moved online and through the various name changes: Visual Studio Online and Visual Studio Team Services. Through the years, however, it has become far more than its predecessors.
 
@@ -220,7 +220,7 @@ steps:
   condition: succeededOrFailed()
 ```
 
-***Figure 11-8*** - A sample azure-pipelines.yml
+**Figure 11-8** - A sample azure-pipelines.yml
 
 This build definition uses a number of built in tasks which make creating builds as simple as building a Lego set (simpler than the giant Millennium Falcon). For instance the NuGet task restores NuGet packages while the VSBuild task calls out to the Visual Studio build tools to perform the actual compilation. There are hundreds of different tasks available in Azure DevOps with thousands more which are community maintained. It is likely that no matter what build tasks you're looking to run somebody has built one already.
 

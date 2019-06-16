@@ -85,5 +85,4 @@
       href: infrastructure-as-code.md
     - name: Cloud Native Application Bundles
       href: cloud-native-application-bundles.md
-  - name: Key takeaways
-    href: key-takeaways.md
+
