@@ -58,7 +58,7 @@ The Azure cloud platform provides a highly elastic infrastructure with a rich se
 
 ## Thinking in terms of microservices…
 
-Much has been written about microservices, an increasingly popular architectural style for building modern services. An excellent and comprehensive guide is [.NET Microservices: Architecture for Containerized .NET Applications](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/), free from Microsoft.
+Much has been written about microservices, an increasingly popular architectural style for building modern services. An excellent and comprehensive guide is [.NET Microservices: Architecture for Containerized .NET Applications](https://docs.microsoft.com/dotnet/standard/microservices-architecture/), free from Microsoft.
 
 Cloud native systems embrace microservices. Moving beyond the popular monolithic design, in which an entire application executes in a single-tiered environment, a microservices architecture is an approach to building a system as a distributed set of small, independent services – that interact through a shared fabric.
 
@@ -98,7 +98,7 @@ Each microservice typically runs in its own container, as shown below in Figure 
 ![Multiple containers running on a container host](media/multiple-containers-running-on-a-host.png)
 **Figure 1-5**. Multiple containers running on a container host
 
-Even though each container shares the OS on the underlying VM, each is isolated from one another. Both Linux and Windows container provide a high-degree of process isolation across running containers. However, Windows containers offer an even higher degree of isolation using its [Hype-V Container](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/hyperv-container) offering.
+Even though each container shares the OS on the underlying VM, each is isolated from one another. Both Linux and Windows container provide a high-degree of process isolation across running containers. However, Windows containers offer an even higher degree of isolation using its [Hype-V Container](https://docs.microsoft.com/virtualization/windowscontainers/manage-containers/hyperv-container) offering.
 
 Another direct benefit of containers is scalability. You can rapidly scale-out with additional containers for short-term tasks and quickly scale-in when no longer needed. From an application point of view, running an image (creating a container) is like instantiating a process such as a service or web app. For availability, however, when running multiple container instances of the same image, you typically strive for running each container on a different host VM inside of a cluster. This way, if one VM were to be unavailable, you could route requests to another VM that was operational. We’ll cover availability later in this book.
 
@@ -108,12 +108,12 @@ Many organizations already deploy their releases inside of containers. When code
 
 Some development teams are exploring writing and running code locally (on their development machines) all inside Docker containers. Each service is defined with a dockerfile specifying the base OS along and configuration steps. They can then “pull” images to fulfill various service dependencies without having to manage the entire set of source code on their machines. Building a docker compose deployment manifest, they define how each service inter-operates. As they complete their local development, they “push” their application code plus the Docker configuration files to the code repository of their choice (i.e. Git repos) for others to consume.
 
-Looking forward, the Azure cloud platform is previewing a service entitled [Azure Dev Spaces](https://docs.microsoft.com/en-us/azure/dev-spaces/), shown below, in Figure 1-6.
+Looking forward, the Azure cloud platform is previewing a service entitled [Azure Dev Spaces](https://docs.microsoft.com/azure/dev-spaces/), shown below, in Figure 1-6.
 
 ![Azure Dev Spaces](media/azure-dev-spaces-site-example.png)
 **Figure 1-6**. Azure Dev Spaces
 
-Here Developer Susie Walker and her team share a development instance of their entire system in an [Azure Kubernetes Service](https://azure.microsoft.com/en-us/services/kubernetes-service/) cluster (shown above in blue). Leveraging Azure Dev Spaces, Susie creates a personal space on her development machine with a local copy of her Hotel Service. With that, she can work locally with the hotel service and seamlessly run against the entire system residing on the cluster without having to mock or replicate dependencies. Until Susie deploys the Hotel Service to the cluster, other team members will run against the older version in the cluster. We discuss this upcoming product, Azure Dev Spaces, in the container chapter.
+Here Developer Susie Walker and her team share a development instance of their entire system in an [Azure Kubernetes Service](https://azure.microsoft.com/services/kubernetes-service/) cluster (shown above in blue). Leveraging Azure Dev Spaces, Susie creates a personal space on her development machine with a local copy of her Hotel Service. With that, she can work locally with the hotel service and seamlessly run against the entire system residing on the cluster without having to mock or replicate dependencies. Until Susie deploys the Hotel Service to the cluster, other team members will run against the older version in the cluster. We discuss this upcoming product, Azure Dev Spaces, in the container chapter.
 
 Containers offer immense benefits in terms of packaging, deploying and managing cloud native applications.
 
@@ -130,7 +130,7 @@ Figure 1-7, shown below, depicts common backing services found in cloud native s
 
 Your operations team could accept the responsibility for owning these ancillary services. It wouldn’t be hard to provision a VM and install, say, an instance of the open source RabbitMQ message broker. While certainly feasible, does that make sense - especially from a business perspective?
 
-Chances are you’re not in the message broker, database or identity server business. So, then, why incur the cost and complexity of owning these items when someone else can do it better and for less? No matter how skilled you may be, it is unlikely that you will be able to match the reliability and performance, say, of the fully-managed [Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) service in Azure. That Microsoft team that owns it lives and breathes databases, 24/7 - that’s their business. While you, on the other hand, sell consumer items, medical devices, etc. Do what you're good at and let others help you with the rest. Focus your effort on building outstanding customer functionality, not becoming experts in 3rd party/open-source backing services.
+Chances are you’re not in the message broker, database or identity server business. So, then, why incur the cost and complexity of owning these items when someone else can do it better and for less? No matter how skilled you may be, it is unlikely that you will be able to match the reliability and performance, say, of the fully-managed [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) service in Azure. That Microsoft team that owns it lives and breathes databases, 24/7 - that’s their business. While you, on the other hand, sell consumer items, medical devices, etc. Do what you're good at and let others help you with the rest. Focus your effort on building outstanding customer functionality, not becoming experts in 3rd party/open-source backing services.
 
 All that said, cloud native systems are best built leveraging managed backing services from a cloud provider. Cloud providers manage these resources at scale and bear the responsibility for security, scalability and maintenance. You can also count on comprehensive monitoring, configurable redundancy and availability – built into the service. They are battle-tested, performant and ready to go!
 
@@ -194,7 +194,7 @@ Fortunately, the Azure platform, along with wide variety of tooling from Microso
 
 ### Automating Infrastructure
 
-Cloud native apps play well to the practice of [Infrastructure as Code (IaC)](https://docs.microsoft.com/en-us/azure/devops/learn/what-is-infrastructure-as-code).
+Cloud native apps play well to the practice of [Infrastructure as Code (IaC)](https://docs.microsoft.com/azure/devops/learn/what-is-infrastructure-as-code).
 
 With IaC, you use tooling, such as [Azure Resource Manager](https://azure.microsoft.com/documentation/articles/resource-group-overview/) or [Terraform](https://www.terraform.io/), to declaratively specify the exact infrastructure that you desire. The script itself is flexible as it parameterizes the resource names,  locations, capacities and secrets. That script becomes an artifact of your project and is versioned and checked into source control. At any time, you can run the IaC script to provision your desired infrastructure. Moving forward, you can modify and rerun the script to update your environment. As the script is parameterized, you can run the same script across your different system environments (i.e., Dev, Test, Staging, Production) providing an identical blueprint of resources.
 

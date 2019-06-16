@@ -130,7 +130,7 @@ The stages in the boards are not the only organizational tool. Depending on the 
 
 The description field supports the normal styles you'd expect (bold, italic underscore and strike through) and also the ability to insert images. This makes it a very powerful tool for use when specifying work or bugs.
 
-Tasks can be rolled up into features, which define a larger unit of work. Features, in turn, can be [rolled up into epics](https://docs.microsoft.com/en-us/azure/devops/boards/backlogs/define-features-epics?view=azure-devops). Classifying tasks in this hierarchy makes it much easier to understand how close a large feature is to rolling out.
+Tasks can be rolled up into features, which define a larger unit of work. Features, in turn, can be [rolled up into epics](https://docs.microsoft.com/azure/devops/boards/backlogs/define-features-epics?view=azure-devops). Classifying tasks in this hierarchy makes it much easier to understand how close a large feature is to rolling out.
 
 ![Figure 11-5 Work item types configured by default in the Basic process template](media/board-issue-types.png)
 

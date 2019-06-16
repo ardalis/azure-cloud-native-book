@@ -23,14 +23,14 @@ While relatively simple to implement, direct front-end communication is seldom a
 
 - Overly-complex client code
 
-Instead, a widely-accepted cloud design pattern is to implement an [API Gateway Service](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/architect-microservice-container-applications/direct-client-to-microservice-communication-versus-the-api-gateway-pattern) between the frontend applications and backend services, as shown below in Figure 4-3.
+Instead, a widely-accepted cloud design pattern is to implement an [API Gateway Service](https://docs.microsoft.com/dotnet/standard/microservices-architecture/architect-microservice-container-applications/direct-client-to-microservice-communication-versus-the-api-gateway-pattern) between the frontend applications and backend services, as shown below in Figure 4-3.
 
 ![API Gateway Pattern](media/api-gateway-pattern.png)
 **Figure 4-3.** API Gateway Pattern
 
 This pattern exposes a single point of entry (the API gateway) to enable front-end clients to communicate with backend services, insulating the front end from internal service partitioning and refactoring. Not only does the gateway act as a reverse proxy appropriately rerouting inbound traffic but also allows many of the cross-cutting concerns, such as identity, caching, resiliency, metering, throttling, to be offloaded from the backend core services to the gateway.
 
-Care must be taken to keep the API Gateway simple and fast. A single gateway risks becoming a bottleneck and eventually a monolith itself. In larger systems, it is considered a good practice to expose multiple API Gateways segmented on either client type (i.e., mobile, web, desktop) or backend service categories. A popular pattern that provides guidance for multiple gateways is called the [Backend for Frontends](https://docs.microsoft.com/en-us/azure/architecture/patterns/backends-for-frontends) pattern.
+Care must be taken to keep the API Gateway simple and fast. A single gateway risks becoming a bottleneck and eventually a monolith itself. In larger systems, it is considered a good practice to expose multiple API Gateways segmented on either client type (i.e., mobile, web, desktop) or backend service categories. A popular pattern that provides guidance for multiple gateways is called the [Backend for Frontends](https://docs.microsoft.com/azure/architecture/patterns/backends-for-frontends) pattern.
 
 Without much effort, you could build your own API Gateway service. In fact, a quick search of GitHub will present you with many examples. However, there are several off-the-shelf options available.
 
@@ -41,7 +41,7 @@ Azure hosts a cloud-based, fully-managed and full-featured API Gateway solution 
 ![Azure API Management](media/azure-api-management.png)
 **Figure 4-4**. Azure API Management
 
-[Azure API Management](https://azure.microsoft.com/services/api-management/) enables you to access backend services hosted anywhere – in the cloud or on-premises in your data center. It supports both REST and SOAP APIs across any development platform (.NET, Java, Golang, etc.). Even other Azure services can be exposed through API Management, letting you put a managed API on top of Azure backing services like [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) or [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/).
+[Azure API Management](https://azure.microsoft.com/services/api-management/) enables you to access backend services hosted anywhere – in the cloud or on-premises in your data center. It supports both REST and SOAP APIs across any development platform (.NET, Java, Golang, etc.). Even other Azure services can be exposed through API Management, letting you put a managed API on top of Azure backing services like [Azure Service Bus](https://azure.microsoft.com/services/service-bus/) or [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/).
 
 As shown above in Figure 4-4, the API Gateway feature creates a façade over the backend microservices. Clients (i.e., front-end, other cloud services) invoke the façade with HTTP requests. Each call is eventually routed to a backend service, allowing API Management to add configurable services to the call.
 
