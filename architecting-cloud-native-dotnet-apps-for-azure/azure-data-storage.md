@@ -199,8 +199,9 @@ The benefits of caching to improve performance and scalability are well understo
 
 For a cloud native application, a common location to add caching is inside the API Gateway. As this service front-ends all incoming requests, it can increase performance and responsiveness by returning cached data that avoids round-trips to a local database or downstream service. Figure 5-19 depicts such an architecture.
 
-![Caching a in cloud native app](media/caching-in-a-cloud-native-app.png)
+![Caching in a cloud native app](media/caching-in-a-cloud-native-app.png)
 
+**Figure 5-19**: Caching in a Cloud Native App
 
 Implementing the [cache-aside pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/cache-aside), you first query the cache for the response, shown above step #1. If found, the data is returned immediately. In the event of a [cache miss](https://www.techopedia.com/definition/6308/cache-miss) where the data does not exist in the cache, it is retrieved from the local database or downstream service (step #2), written to the cache for future requests (step #3) and returned. Care must be taken to ensure that cached data is periodically invalidated so that the system remains consistent and accurate.
 
