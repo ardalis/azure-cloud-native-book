@@ -75,7 +75,9 @@ Figure 2-x shows the basic form requirements in the Azure Portal to create a new
 
 ## Azure Dev Spaces
 
-Complex Kubernetes clusters can require significant resources to host, which can make it difficult for developers to run the entire application on a single machine (especially a laptop). Azure Dev Spaces offers a solution to this by allowing developers to work their own versions of Azure Kubernetes clusters hosted in Azure. To understand the value of Azure Dev Spaces, let me share this quote from Gabe Monroy, PM Lead of Containers at Microsoft Azure:
+Complex Kubernetes clusters can require significant resources to host, which can make it difficult for developers to run the entire application on a single machine (especially a laptop). Azure Dev Spaces offers a solution to this by allowing developers to work with their own versions of Azure Kubernetes clusters hosted in Azure. Azure Dev Spaces is designed to ease development of microservice-based applications using AKS.
+
+To understand the value of Azure Dev Spaces, let me share this quote from Gabe Monroy, PM Lead of Containers at Microsoft Azure:
 
 "Imagine you are a new employee trying to fix a bug in a complex microservices application consisting of dozens of components, each with their own configuration and backing services. To get started, you must configure your local development environment so that it can mimic production including setting up your IDE, building tool chain, containerized service dependencies, a local Kubernetes environment, mocks for backing services, and more. With all the time involved setting up your development environment, fixing that first bug could take days.
 
@@ -98,8 +100,6 @@ Next, you can use the `azds prep` command to generate the necessary Docker and H
 
 ![Connect to Azure Dev Spaces in Visual Studio](media/azure-dev-spaces-visual-studio-launchsettings.png)
 **Figure 2-x**. Connect to Azure Dev Spaces in Visual Studio
-
-
 
 ## References
 
