@@ -222,4 +222,4 @@ Azure Cache for Redis is available in 3 different pricing tiers. The Premium tie
 
 >[!div class="step-by-step"]
 >[Previous](cloud-native-data-patterns.md)
->[Next](caching-in-azure.md)
+>[Next](resiliency.md)
