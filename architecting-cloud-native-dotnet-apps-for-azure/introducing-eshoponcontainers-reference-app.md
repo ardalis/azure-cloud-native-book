@@ -48,7 +48,36 @@ Because it leverages microservices, the eShopOnContainers app includes quite a f
 
 The solution includes two web front end variants, a traditional server-rendered MVC app and a Single Page Application (SPA) built with Angular and TypeScript. It also includes three mobile front end applications, built for Android, iOS, and Universal Windows (UWP). The *Services* folder containers tha application's microservice back ends. These are ASP.NET Core apps built to expose Web APIs, and each one is self-contained and includes its own data source. These data source implementations range from SQL Server to Redis.
 
-The code repository includes several different solution files, so you can focus on a specific area of the overall application. The most commonly used solution is the `eShopOnContainers-ServicesAndWebApps` solution, which focuses on the back end services, API gateways, and web applications. Each solution includes a docker-compose project as well which is used by default when you run the application from Visual Studio. This command will build and run all of the necessary container instances to run the application locally in Docker containers.
+The code repository includes several different solution files, so you can focus on a specific area of the overall application. The most commonly used solution is the `eShopOnContainers-ServicesAndWebApps` solution, which focuses on the back end services, API gateways, and web applications. Each solution includes a docker-compose project as well which is used by default when you run the application from Visual Studio. This command will build and run all of the necessary container instances to run the application locally in Docker containers. The container instances involved in running this solution include:
+
+- A [Seq endpoint](https://datalust.co/seq)
+- A SQL Server instance
+- A MongoDB instance
+- A Redis instance
+- A RabbitMQ instance
+- An Identity API service
+- A Basket API service
+- A Catalog API service
+- An Ordering API service
+- An Ordering Background Task 
+- A Marketing API service
+- A Payment API service
+- A Locations API service
+- A Webhooks API service
+- API Gateways for mobile shopping and marketing
+- API Gateways for web shopping and marketing
+- Aggregators for mobile and web gateways
+- An Ordering SignalR hub service
+- A web status service
+- A SPA service
+- An MVC service
+- A Webhooks client service
+
+Obviously, running all of these services may require significant resources on your development machine. See the [eShopOnContainers application Wiki](https://github.com/dotnet-architecture/eShopOnContainers/wiki) for dev machine requirements and notes for getting started, including how to run the application in Azure using Azure Dev Spaces and AKS.
+
+## References
+
+- [eShopOnContainers GitHub Project](https://github.com/dotnet-architecture/eShopOnContainers)
 
 >[!div class="step-by-step"]
 >[Previous](implementing-a-cloud-native-app.md)
