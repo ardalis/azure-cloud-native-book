@@ -46,6 +46,10 @@ Because it leverages microservices, the eShopOnContainers app includes quite a f
 ![Projects in Visual Studio solution.](./media/projects-in-visual-studio-solution.png)
 **Figure 3-4**. Projects in Visual Studio solution.
 
+The solution includes two web front end variants, a traditional server-rendered MVC app and a Single Page Application (SPA) built with Angular and TypeScript. It also includes three mobile front end applications, built for Android, iOS, and Universal Windows (UWP). The *Services* folder containers tha application's microservice back ends. These are ASP.NET Core apps built to expose Web APIs, and each one is self-contained and includes its own data source. These data source implementations range from SQL Server to Redis.
+
+The code repository includes several different solution files, so you can focus on a specific area of the overall application. The most commonly used solution is the `eShopOnContainers-ServicesAndWebApps` solution, which focuses on the back end services, API gateways, and web applications. Each solution includes a docker-compose project as well which is used by default when you run the application from Visual Studio. This command will build and run all of the necessary container instances to run the application locally in Docker containers.
+
 >[!div class="step-by-step"]
 >[Previous](implementing-a-cloud-native-app.md)
 >[Next](mapping-eshoponcontainers-to-azure-services.md)

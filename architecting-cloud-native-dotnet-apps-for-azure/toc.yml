@@ -50,7 +50,7 @@
       href: cloud-native-data-patterns.md
     - name: Data Storage in Azure
       href: azure-data-storage.md
-    - name:Caching in Azure
+    - name: Caching in Azure
       href: caching-in-azure.md
   - name: Resiliency
     href: resiliency.md
