@@ -11,4 +11,4 @@ As discussed in [Chapter 1](introduction-to-cloud-native-applications.md), the 1
 
 >[!div class="step-by-step"]
 >[Previous](hosting-the-eshoponcontainers-application.md)
-<!-->[Next](cloud-native-communication-patterns.md)-->
+>[Next](cloud-native-communication-patterns.md) <!-- Next Chapter -->

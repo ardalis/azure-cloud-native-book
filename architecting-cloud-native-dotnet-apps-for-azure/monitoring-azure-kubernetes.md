@@ -13,7 +13,7 @@ Out of the box the logging in Kubernetes is somewhat primitive. However there ar
 
 The Elastic Stack is a powerful option for gathering information from a Kubernetes cluster. Support for sending logs to an Elasticsearch endpoint is built into Kubernetes and for the [most part](https://kubernetes.io/docs/tasks/debug-application-cluster/logging-elasticsearch-kibana/) all that is needed to get started is to set the environmental variables as shown in Figure 8-4.
 
-```
+```kubernetes
 KUBE_LOGGING_DESTINATION=elasticsearch
 KUBE_ENABLE_NODE_LOGGING=true
 ```
@@ -38,10 +38,10 @@ No matter which orchestrator or operating system running the Azure Monitor daemo
 
 ![Figure 8-7 A sample dashboard showing logging and metric information from a number of running containers.](media/containers-dashboard.png)
 
-# Log.Finalize()
+## Log.Finalize()
 
 Logging is one of the most overlooked and yet most important parts of deploying any application at scale. As the size and complexity of applications increase then so does the difficulty of debugging them. Having top quality logs available makes debugging much easier and moves it from the realm of "nearly impossible" to "a pleasant experience".
 
 >[!div class="step-by-step"]
 >[Previous](azure-monitor.md)
-<!-->[Next](identity.md)-->
+>[Next](identity.md) <!-- Next Chapter -->
