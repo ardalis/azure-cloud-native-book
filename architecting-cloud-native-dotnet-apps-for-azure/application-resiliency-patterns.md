@@ -13,4 +13,4 @@ Automated Healing
 
 >[!div class="step-by-step"]
 >[Previous](resiliency.md)
-<!-->[Next](monitoring-and-health.md)-->
+>[Next](monitoring-and-health.md) <!-- Next Chapter -->

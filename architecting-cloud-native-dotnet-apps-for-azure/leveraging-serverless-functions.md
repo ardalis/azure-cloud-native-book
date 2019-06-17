@@ -19,9 +19,12 @@ When creating an Azure Function, you must choose the programming language you wa
 
 When the project is created, it will include a Dockerfile. Next, you can create and test your function locally. [See this tutorial](https://docs.microsoft.com/azure/azure-functions/functions-create-function-linux-custom-image) for detailed steps to get started building Azure Functions with Docker support.
 
+Azure Functions are well-suited to cross-functional communication. If you have multiple applications or microservices running in separate containers or servers and communicating using messaging, Azure Functions are an ideal solution to handling inter-process messages. Azure offers a variety of ways to send messages between services, such as storage queues and Azure Service Bus. Azure functions can be written to respond to new messages as well as to send messages over these services. Ideally, Azure functions should be short-lived and stateless. Since the function is self-contained, you're responsible for performing any necessarily exception handling and retry logic within the function, too. For performance reasons, if it's possible your event source may be receiving many small messages, it's best to process incoming messages in batches, rather than individually.
+
 ## References
 
 - [Create a function on Linux using a custom image](https://docs.microsoft.com/azure/azure-functions/functions-create-function-linux-custom-image)
+- [Azure Functions Best Practices](https://docs.microsoft.com/azure/azure-functions/functions-best-practices)
 
 >[!div class="step-by-step"]
 >[Previous](leveraging-containers-and-orchestrators.md)
