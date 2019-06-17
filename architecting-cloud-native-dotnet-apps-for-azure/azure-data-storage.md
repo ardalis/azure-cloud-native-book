@@ -193,7 +193,33 @@ Under the hood, DB transparently and automatically manages the placement of logi
 
 In addition to a partition key that determines the item’s logical partition, each item in a container has an item ID (unique within a logical partition). Combining the partition key and the item ID creates the item's index, which uniquely identifies the item.
 
+## Azure Redis Cache
+
+The benefits of caching to improve performance and scalability are well understood. 
+
+For a cloud native application, a common location to add caching is inside the API Gateway. As this service front-ends all incoming requests, it can increase performance and responsiveness by returning cached data that avoids round-trips to a local database or downstream service. Figure 5-19 depicts such an architecture.
+
+![Caching a in cloud native app](media/caching-in-a-cloud-native-app.png)
+
+
+Implementing the [cache-aside pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/cache-aside), you first query the cache for the response, shown above step #1. If found, the data is returned immediately. In the event of a [cache miss](https://www.techopedia.com/definition/6308/cache-miss) where the data does not exist in the cache, it is retrieved from the local database or downstream service (step #2), written to the cache for future requests (step #3) and returned. Care must be taken to ensure that cached data is periodically invalidated so that the system remains consistent and accurate.
+
+Additionally, note above how the cache is not implemented locally within the boundaries of the service, but instead is consumed as a cloud-based backing service, as discussed in Chapter 1.
+
+[Azure Redis Cache](https://azure.microsoft.com/en-us/services/cache/) is a fully-managed secure data cache and messaging broker that provides high throughput and low-latency access to data for applications. Azure Cache for Redis provides you access to a secure and dedicated Redis cache. Exposed as a PaaS (Platform as a Service) offering. Azure Cache for Redis is fully-managed by Microsoft, hosted within Azure, and accessible to any application within or outside of Azure.
+
+At its core, Azure Cache for Redis is backed by the open-source Redis server and natively supports data structures such as [strings](http://redis.io/topics/data-types#strings), [hashes](http://redis.io/topics/data-types#hashes), [lists](http://redis.io/topics/data-types#sets), [sets](http://redis.io/topics/data-types#sets), and [sorted sets](http://redis.io/topics/data-types#sorted-sets). If your application uses Redis, it’ll work as-is with Azure Cache for Redis.
+
+Azure Cache for Redis can also be used as an in-memory data structure store, a distributed non-relational database, and a message broker. Application performance is improved by taking advantage of the low-latency, high-throughput performance of the Redis engine.
+
+Azure Cache for Redis is available in 3 different pricing tiers. The Premium tier features many enterprise-level features such as clustering, data persistence, geo-replication and Virtual-network security and isolation.
+
+## Summary
+
+
 ## Additional resources
+
+
 >[!div class="step-by-step"]
 >[Previous](cloud-native-data-patterns.md)
 >[Next](caching-in-azure.md)
