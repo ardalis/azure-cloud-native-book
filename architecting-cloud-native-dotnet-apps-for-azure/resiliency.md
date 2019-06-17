@@ -8,5 +8,5 @@ ms.date: 06/30/2019
 Intro paragraph
 
 >[!div class="step-by-step"]
->[Previous](distributed-data.md)
+>[Previous](azure-data-storage.md)
 >[Next](application-resiliency-patterns.md)
