@@ -119,5 +119,5 @@ In Figure 4-8, above, the client sends an HTTP request to the Ocelot gateway. On
 Ocelot is extensible and can support many modern platforms, including Azure Kuberentes Services and Service Fabric, as well as integration with open-source packages like Consul, GrapQL, Netflix’s Eureka, web sockets, and SignalR.
 
 >[!div class="step-by-step"]
->[Previous](cloud-native-data-patternss.md)
+>[Previous](cloud-native-data-patterns.md)
 >[Next](cross-service-communication.md)
