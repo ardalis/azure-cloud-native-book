@@ -28,9 +28,9 @@ Even further clouding operating system concerns is the explosive growth of conta
 
 ### Azure, LCOW and Windows Server 2019 Platform
 
-Finally, cloud providers like Microsoft openly embrace both Windows and Linux workloads. For Azure, it�s Linux, not Windows Server, that has become the most popular operating system. Furthermore, many critical Azure services run on Linux. Consider, for example, Redis Cache, Sql Server on Linux, NoSql or the variety of Linux VMs supporting at least eight Linux distros that are available and have full support in Azure.
+Finally, cloud providers like Microsoft openly embrace both Windows and Linux workloads. For Azure, it's Linux, not Windows Server, that has become the most popular operating system. Furthermore, many critical Azure services run on Linux. Consider, for example, Redis Cache, Sql Server on Linux, NoSql or the variety of Linux VMs supporting at least eight Linux distros that are available and have full support in Azure.
 
-Even [Windows Server 2019](https://cloudblogs.microsoft.com/windowsserver/2018/03/20/introducing-windows-server-2019-now-available-in-preview/)�itself features a subsystem for Linux that enables Windows and Linux environments to run simultaneously. Another new Windows feature, [Linux Containers on Windows](https://blogs.msdn.microsoft.com/premier_developer/2018/04/20/running-docker-windows-and-linux-containers-simultaneously/) ([LCOW](https://blogs.msdn.microsoft.com/premier_developer/2018/04/20/running-docker-windows-and-linux-containers-simultaneously/)) makes it possible to run Linux�*and* Windows containers simultaneously - all from a single Docker engine. LCOW not only simplifies day-to-day management, but also consolidates infrastructure costs as there is no longer the need for dedicated hosts for each operating system.
+Even [Windows Server 2019](https://cloudblogs.microsoft.com/windowsserver/2018/03/20/introducing-windows-server-2019-now-available-in-preview/) itself features a subsystem for Linux that enables Windows and Linux environments to run simultaneously. Another new Windows feature, [Linux Containers on Windows](https://blogs.msdn.microsoft.com/premier_developer/2018/04/20/running-docker-windows-and-linux-containers-simultaneously/) ([LCOW](https://blogs.msdn.microsoft.com/premier_developer/2018/04/20/running-docker-windows-and-linux-containers-simultaneously/)) makes it possible to run Linux *and* Windows containers simultaneously - all from a single Docker engine. LCOW not only simplifies day-to-day management, but also consolidates infrastructure costs as there is no longer the need for dedicated hosts for each operating system.
 
 As cloud native architecture and container orchestrators evolve, expect to see less and less importance placed on the choice of the operating system.
 
@@ -42,7 +42,7 @@ Fast-forward to 2019 and the [Microsoft .NET Core platform](https://dotnet.micro
 
 .NET Core supports multiple programming languages, editors and libraries. It fully supports the C# programming which is a widely-used and mature language that is frequently updated and continually modernized.
 
-.NET core is highly performant and has scored very well in comparison to Node.js and other completing platforms � see the [TechEmpower](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=plaintext) benchmark.
+.NET core is highly performant and has scored very well in comparison to Node.js and other completing platforms see the [TechEmpower](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=plaintext) benchmark.
 
 .NET Core plays especially well with microservice-based applications, including built-in features, open-source initiatives that directly support microservice development and direct support for Docker containers. All that said, the .NET Core stack with C\# is an excellent choice for building cloud native applications in the Azure cloud.
 
@@ -56,7 +56,7 @@ At the top of the list is [Visual Studio](https://visualstudio.microsoft.com/), 
 
 It includes built-in support of Docker container-based development and a rich set of web development tooling providing everything you need to develop, manage and deploy complex microservice applications. In the latest version of Visual Studio, you can develop cross-platform applications without leaving the IDE.
 
-Rated as one of the [world�s leading IDEs](https://www.g2crowd.com/categories/integrated-development-environment-ide), Visual Studio is available in a free fully-functional [Community Edition](https://visualstudio.microsoft.com/vs/community/), with more feature-rich version available for Corporate use.
+Rated as one of the [world's leading IDEs](https://www.g2crowd.com/categories/integrated-development-environment-ide), Visual Studio is available in a free fully-functional [Community Edition](https://visualstudio.microsoft.com/vs/community/), with more feature-rich version available for Corporate use.
 
 ### Visual Studio Code
 
@@ -130,7 +130,7 @@ Azure Pipelines combines continuous integration (CI) and continuous delivery (CD
 
 ## Summary
 
-In this chapter, we flew over cloud native computing at 5,000 feet, providing a definition along with the key characteristics of a cloud native application. We looked at the type of applications that might justify this type of investment and effort. Lastly, we looked cloud native development stack available in the Azure Cloud <https://deloitte.wsj.com/cio/2018/08/27/3-reasons-to-go-cloud-native/> working toward a [cloud-native](https://deloitte.wsj.com/cio/2016/12/12/making-the-leap-to-a-cloud-native-world/) mindset reorganizing people and processes and reworking applications with the cloud in mind�organizations can maximize the benefits of their cloud efforts.
+In this chapter, we flew over cloud native computing at 5,000 feet, providing a definition along with the key characteristics of a cloud native application. We looked at the type of applications that might justify this type of investment and effort. Lastly, we looked cloud native development stack available in the Azure Cloud <https://deloitte.wsj.com/cio/2018/08/27/3-reasons-to-go-cloud-native/> working toward a [cloud-native](https://deloitte.wsj.com/cio/2016/12/12/making-the-leap-to-a-cloud-native-world/) mindset reorganizing people and processes and reworking applications with the cloud in mind organizations can maximize the benefits of their cloud efforts.
 
 ### References
 

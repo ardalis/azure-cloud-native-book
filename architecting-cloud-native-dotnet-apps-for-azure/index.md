@@ -39,7 +39,7 @@ All other marks and logos are property of their respective owners.
 Author:
 
 > **Steve "ardalis" Smith** - Software Architect and Trainer - [Ardalis.com](https://ardalis.com)
-> **Robert Vettor** - Microsoft
+> **Rob Vettor** - Microsoft - Principal Cloud System Architect/IP Architect - [RobVettor.com](http://robvettor.com)
 
 Editors:
 
