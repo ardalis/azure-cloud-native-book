@@ -11,14 +11,14 @@ As discussed in Chapter 1, cloud native systems embrace distributed architecture
 
 It's challenging to design and deploy a distributed cloud-native application. And, it’s equally challenging to keep that application running in an environment where failure is certain. Consider what can go wrong:
 
-•	Unexpected [Network Latency](https://www.techopedia.com/definition/8553/network-latency) network latency
-•	[Transient faults](https://docs.microsoft.com/en-us/azure/architecture/best-practices/transient-faults) (temporary network connectivity errors)
-•	Blocking by long-running synchronous operations
-•	A host process that crashes and needs to be restarted or moved
-•	An overloaded microservice that cannot respond for a short time
-•	An in-flight DevOps operation such as an update or scaling operation
-•	An Orchestrator operation such as moving a service from one node to another
-•	Hardware failures from commodity hardware
+-	Unexpected [Network Latency](https://www.techopedia.com/definition/8553/network-latency) network latency
+-	[Transient faults](https://docs.microsoft.com/en-us/azure/architecture/best-practices/transient-faults) (temporary network connectivity errors)
+-	Blocking by long-running synchronous operations
+-	A host process that crashes and needs to be restarted or moved
+-	An overloaded microservice that cannot respond for a short time
+-	An in-flight DevOps operation such as an update or scaling operation
+-	An Orchestrator operation such as moving a service from one node to another
+-	Hardware failures from commodity hardware
 
 In a small-scale distributed system, failures will be less common. But as the system grows in scale, you can bank on an increasing number of problems such that the partial failure becomes a normal mode of operation.
 
