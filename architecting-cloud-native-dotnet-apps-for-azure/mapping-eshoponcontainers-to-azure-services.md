@@ -26,7 +26,13 @@ The reference application uses a container-hosted MongoDB instance by default. Y
 
 ## Message Bus
 
-The eShopOnContainers application uses a container-hosted RabbitMQ implementation for local development and testing. For production, it's recommended to instead use Azure Service Bus, with additional consideration paid to error-handling scenarios which are out of scope of the sample. The sample includes implementations of both RabbitMQ and Azure Service Bus event buses, both of which implement a common abstraction defined in the sample (`IEventBus`).
+The eShopOnContainers application uses a container-hosted RabbitMQ implementation for local development and testing. For production, it's recommended to instead use Azure Service Bus, with additional consideration paid to error-handling scenarios which are out of scope of the sample. The sample includes implementations of both RabbitMQ and Azure Service Bus event buses, both of which implement a common abstraction defined in the sample (`IEventBus`). It's worth noting that this use of abstraction and swapping of implementations is made possible by the application's use of the [SOLID Principles](https://deviq.com/solid/) and following using [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) for the application's architecture.
+
+## Logging and Analytics
+
+The eShopOnContainers app leverages [Serilog](https://serilog.net/) for its structure logging, with Seq as its centralized logging store. Seq supports cloud native applications through their publication of [a Seq implementation running in a Docker container](https://hub.docker.com/r/datalust/seq) which can be used both during development and in production. Centralized logging is critical to being able to diagnose problems that arise within a request that spans many different microservices using both synchronous and message-based communication protocols.
+
+In addition to centralized logging, the app uses Application Insights to track how the application is behaving to a centralized analytics store in Azure. Application Insights can easily be added to any ASP.NET Core application by simply referencing its Nuget package and adding `UseApplicationInsights()` to the application's `WebHostBuilder`, typically in `Program.cs`. For best results in a microservices architecture, the systems should write to a common instance of Application Insights, so a common *instrumentation key* should be provided to every container instance hosting the application. This is exactly what is done in the eShopOnContainers app, in its `docker-compose.override.yml` file. The settings can be defined in a `.env` file or specified as part of the application's Helm charts when deployed to a production environment.
 
 ## References
 
@@ -38,6 +44,9 @@ The eShopOnContainers application uses a container-hosted RabbitMQ implementatio
 - [MongoDB on Azure](https://docs.mongodb.com/ecosystem/platforms/windows-azure/)
 - [RabbitMQ](https://www.rabbitmq.com/)
 - [Azure Service Bus](https://azure.microsoft.com/services/service-bus/)
+- [Serilog](https://serilog.net/)
+- [Seq](https://datalust.co/seq)
+- [What is Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/app-insights-overview)
 
 >[!div class="step-by-step"]
 >[Previous](introducing-eshoponcontainers-reference-app.md)
