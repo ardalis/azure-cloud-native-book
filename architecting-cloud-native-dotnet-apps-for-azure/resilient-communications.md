@@ -7,5 +7,5 @@ ms.date: 06/30/2019
 
 
 >[!div class="step-by-step"]
->[Previous](application-resiliency-patterns)
+>[Previous](azure-platform-resiliency.md)
 >[Next](grpc.md) <!-- Next Chapter -->

@@ -55,8 +55,8 @@
     items:
     - name: Application Resiliency Patterns
       href: application-resiliency-patterns.md
-    - name: Cloud infrastructure Resiliency with Azure
-      href: cloud-infrastructure-resiliency.md
+    - name: Azure Platform Resiliency
+      href: azure-platform-resiliency.md
     - name: Resilient Communication
       href: resilient-communications.md
     - name: gRPC Communication
