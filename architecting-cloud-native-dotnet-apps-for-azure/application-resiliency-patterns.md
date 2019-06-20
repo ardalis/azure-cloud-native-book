@@ -75,4 +75,4 @@ Application resiliency is a must for handling problematic requested operations. 
 
 >[!div class="step-by-step"]
 >[Previous](resiliency.md)
->[Next](resilient-communications.md) <!-- Next Chapter -->
+>[Next](cloud-infrastructure-resilience.md) <!-- Next Chapter -->
